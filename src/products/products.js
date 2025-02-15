@@ -1,11 +1,11 @@
 export const Products = [
     {
-        name: "Product 1",
-        description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
-        price: "",
-        newPrice: "",
-        image: "",
-        new: false,
-
+        active: true, // false - anjatac
+        name: "Product 1", // anun
+        description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit.", // meknabanutyun
+        price: "", // himnakan gin
+        newPrice: "", // skidki depqum
+        image: "", // nkar
+        new: false // norutyun
     }
 ]
