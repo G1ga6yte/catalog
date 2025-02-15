@@ -1,0 +1,80 @@
+.MainContainer{
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: start;
+  justify-content: space-around;
+
+
+  .catalogLink{
+    width: 30%;
+    margin-top: 15vh;
+    height: 80vh;
+    text-decoration: none;
+    box-shadow: none;
+    transition: 0.3s ease-in-out;
+    overflow: hidden;
+    border: 1px solid transparent;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+
+
+    .catalogImg{
+      width: 100%;
+      height: 80%;
+      object-fit: cover;
+      object-position: top;
+      transition: 0.3s ease-in-out;
+      border-radius: 12px;
+    }
+
+    .textCont{
+      position: relative;
+      padding-bottom: 20px;
+      flex-grow: 1;
+
+      .name{
+        margin-top: 10px;
+        font-size: 28px;
+        font-family: 'Raleway', sans-serif;
+        font-weight: 500;
+        color: #055659;
+        padding-left: 10px;
+        transition: 0.3s ease-in-out;
+      }
+
+      .moreIcon{
+        position: absolute;
+        right: 20px;
+        bottom: 0;
+        transition: 0.3s ease-in-out;
+      }
+    }
+
+
+    &:hover{
+      .catalogImg{
+        transform: scale(1.01);
+        border-radius: 16px;
+      }
+
+      .textCont{
+        .name{
+        }
+
+        .moreIcon{
+          right: 10px;
+          bottom: 10px;
+        }
+      }
+
+    }
+
+
+
+  }
+}
