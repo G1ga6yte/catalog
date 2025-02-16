@@ -1,0 +1,24 @@
+.LoadingContainer{
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(255, 255, 255, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .loadingIcon{
+    font-size: 64px;
+    stroke: #055659;
+    animation: spin 3s infinite ease-in-out;
+  }
+}
+
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(720deg); }
+}

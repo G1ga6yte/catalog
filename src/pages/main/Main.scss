@@ -13,12 +13,12 @@
     width: 100%;
     margin-bottom: 20px;
     margin-top: 120px;
-    color: #055659;
-    font-size: 32px;
+    color: #0b6a6e;
+    font-size: 28px;
     font-family: 'Raleway', sans-serif;
-    font-weight: 500;
+    font-weight: 600;
     @include screen($tablet-l){
-      font-size: 26px;
+      font-size: 24px;
       margin-bottom: 10px;
       margin-top: 80px;
     }
@@ -77,9 +77,13 @@
     box-shadow: none;
     transition: 0.3s ease-in-out;
     overflow: hidden;
-    border: 1px solid transparent;
     border-radius: 12px;
     display: flex;
+    background-color: transparent;
+    cursor: pointer;
+    outline: none;
+    border: none;
+    text-align: start;
     flex-direction: column;
     @include screen($desktop){
       height: 420px;

@@ -1,0 +1,107 @@
+@import "../../source/mixin.scss";
+
+.ProductsContainer {
+  max-width: 1200px;
+  margin: 150px auto;
+
+  .cont {
+    width: 100%;
+
+  }
+
+  .phoneType {
+    width: 100%;
+    display: none;
+    @include screen($tablet) {
+      display: flex;
+    }
+  }
+  .desktopType{
+    padding: 0 10px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 100%;
+
+
+    @include screen($tablet){
+      display: none;
+    }
+
+  }
+
+  .productCard {
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+    width: 24%;
+    padding: 12px 10px 20px;
+    background-color: white;
+    border-radius: 16px;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+    overflow: hidden;
+    position: relative;
+
+    &:hover{
+      box-shadow: rgba(0, 0, 0, 0.16) 0px 15px 36px 5px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+
+      .img{
+        transform: scale(1.02);
+      }
+    }
+
+
+    .saleMark{
+      position: absolute;
+      left: 20px;
+      top: 0;
+
+      .salePrg{
+        position: absolute;
+        z-index: 2;
+        left: 50%;
+        transform: translateX(-50%);
+        top: 12px;
+        font-size: 14px;
+        color: white;
+        font-family: 'Raleway', sans-serif;
+        font-weight: 500;
+      }
+
+      .markIcon{
+        font-size: 50px;
+        fill: crimson;
+      }
+    }
+
+    .newMark{
+      position: absolute;
+      top: 30px;
+      right: 20px;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      transform: rotate(20deg);
+      background-color: #f8cd46;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      font-family: 'Raleway', sans-serif;
+      color: white;
+      font-weight: 700;
+      font-size: 14px;
+      z-index: 3;
+    }
+
+
+
+    .img{
+      width: 100%;
+      mix-blend-mode: multiply;
+      background-color: white;
+      transition: 0.2s ease-in-out;
+    }
+
+  }
+
+}

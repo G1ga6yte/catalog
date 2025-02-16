@@ -5,11 +5,13 @@ const CartContext = createContext();
 
 export const CartProvider = ({children}) => {
 
+    const [loading, setLoading] = useState(false);
+    const [activeType, setActiveType] = useState("Master")
 
 
 
     return(<CartContext.Provider value={{
-
+        loading, setLoading, activeType, setActiveType
     }}>
         {children}
     </CartContext.Provider> );

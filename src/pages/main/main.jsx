@@ -1,22 +1,38 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import './Main.scss';
-import {Link} from "react-router";
+import {Link, useNavigate} from "react-router";
 import catalog1 from "./catalog_1.webp"
 import catalog2 from "./catalog_2.webp"
 import catalog3 from "./catalog_3.webp"
 import catalog4 from "./catalog_4.webp"
 import moreIcon from "./more.svg"
 import { FaPlusCircle } from "react-icons/fa";
+import {useCartContext} from "../../cartContext";
 
 
 
 function Main() {
+
+    const {loading, setLoading, setActiveType} = useCartContext()
+    const navigate = useNavigate();
+    useEffect(() => {
+        window.scrollTo(0, 0);
+
+
+    }, []);
+
+    const handleChangeRoute = (type) => {
+        setLoading(true)
+        setActiveType(type)
+        navigate("/products")
+    }
+
     return (
         <div className='MainContainer'>
 
             <p className="header">Каталоги`</p>
 
-            <Link className="catalogLink" to="/">
+            <button onClick={()=>handleChangeRoute("Master")} className="catalogLink" >
                 <img src={catalog1} className="catalogImg" alt=""/>
 
 
@@ -29,9 +45,9 @@ function Main() {
 
                 </div>
 
-            </Link>
+            </button>
 
-            <Link className="catalogLink" to="/">
+            <button onClick={()=>handleChangeRoute("Inter")} className="catalogLink" >
                 <img src={catalog2} className="catalogImg" alt=""/>
 
                 <div className="textCont">
@@ -42,9 +58,9 @@ function Main() {
                     <img src={moreIcon} className="moreIcon" alt=""/>
 
                 </div>
-            </Link>
+            </button>
 
-            <Link className="catalogLink" to="/">
+            <button onClick={()=>handleChangeRoute("Rangers")} className="catalogLink" >
                 <img src={catalog3} className="catalogImg" alt=""/>
 
 
@@ -56,9 +72,9 @@ function Main() {
                     <img src={moreIcon} className="moreIcon" alt=""/>
 
                 </div>
-            </Link>
+            </button>
 
-            <Link className="catalogLink" to="/">
+            <button onClick={()=>handleChangeRoute("Brayt")} className="catalogLink" >
                 <img src={catalog4} className="catalogImg" alt=""/>
 
 
@@ -70,9 +86,9 @@ function Main() {
                     <img src={moreIcon} className="moreIcon" alt=""/>
 
                 </div>
-            </Link>
+            </button>
 
-            <Link className="catalogLink catalogMore" to="/">
+            <button onClick={()=>handleChangeRoute("More")} className="catalogLink catalogMore" >
 
                 <div className="textCont">
                     <p className="name">
@@ -85,7 +101,7 @@ function Main() {
                     {/*<img src={moreIcon} className="moreIcon" alt=""/>*/}
 
                 </div>
-            </Link>
+            </button>
         </div>
     );
 }
