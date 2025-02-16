@@ -1,17 +1,69 @@
+@import "../../source/mixin.scss";
 .NavBarContainer{
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 80px;
-  border-radius: 0 0 50px 50px;
+  border-radius: 0 0 32px 32px;
   cursor: pointer;
   transition: 0.2s;
-  &:hover{
-    filter: brightness(1.2);
-    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  background: #055659;
+  z-index: 10;
+  @include screen($tablet-l){
+    height: 60px;
+  }
+  @include screen($mobile-l){
+    border-radius: 0 0 24px 24px;
   }
 
+
+
+  .cont{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 32px;
+    max-width: 1200px;
+    margin: 0 auto;
+    @include screen($mobile-l){
+      padding: 0 24px;
+    }
+  }
+
+
+  .phoneLink{
+    color: white;
+    font-family: 'Raleway', sans-serif;
+    font-size: 18px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: 0.2s ease-in-out;
+    margin-top: -15px;
+    @include screen($mobile-l){
+      font-size: 15px;
+      margin-top: 0;
+    }
+
+    &:hover{
+      color: #f8cd46;
+
+      .icon{
+        transition: 0.2s ease-in-out;
+        fill: #f8cd46;
+      }
+    }
+
+    .icon{
+      font-size: 26px;
+      @include screen($mobile-l){
+        font-size: 20px;
+      }
+    }
+  }
 
 
 
@@ -20,16 +72,34 @@
     align-items: center;
     justify-content: center;
     padding: 8px;
-    width: 100%;
     height: 100%;
     margin-top: 10px;
+
     .iconImg{
       width: 80px;
+      @include screen($tablet-l){
+        width: 60px;
+      }
+      @include screen($mobile-l){
+        width: 40px;
+      }
     }
     .iconText{
       width: 120px;
       margin-top: -20px;
+      @include screen($tablet-l){
+        width: 100px;
+      }
+      @include screen($mobile-l){
+        width: 80px;
+        margin-top: -10px;
+      }
+
     }
+  }
+
+  .phoneLink{
+
   }
 
 }

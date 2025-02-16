@@ -1,0 +1,61 @@
+@import "./var.scss";
+@mixin screen ($wide-l) {
+  @media(max-width: $wide-l) {
+    @content
+  }
+};
+@mixin screen ($wide-m) {
+  @media(max-width: $wide-m) {
+    @content
+  }
+};
+@mixin screen ($wide) {
+  @media(max-width: $wide) {
+    @content
+  }
+};
+@mixin screen ($wide-s) {
+  @media(max-width: $wide-s) {
+    @content
+  }
+};
+@mixin screen ($desktop) {
+  @media(max-width: $desktop) {
+    @content
+  }
+};
+
+
+@mixin screen ($tablet-l) {
+  @media(max-width: $tablet-l) {
+    @content
+  }
+};
+
+@mixin screen ($tablet-w) {
+  @media(max-width: $tablet-w) {
+    @content
+  }
+};
+
+@mixin screen ($tablet) {
+  @media(max-width: $tablet) {
+    @content
+  }
+};
+
+@mixin screen ($tablet-m) {
+  @media(max-width: $tablet-m) {
+    @content
+  }
+};
+@mixin screen ($mobile-l) {
+  @media(max-width: $mobile-l) {
+    @content
+  }
+};
+@mixin screen ($mobile-m) {
+  @media(max-width: $mobile-m) {
+    @content
+  }
+};

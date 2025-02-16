@@ -1,18 +1,78 @@
+@import "../../source/mixin.scss";
 .MainContainer{
   width: 100%;
-  height: 100vh;
   overflow: hidden;
   max-width: 1200px;
   margin: 0 auto;
   display: flex;
   align-items: start;
   justify-content: space-around;
+  flex-wrap: wrap;
 
+  .header{
+    width: 100%;
+    margin-bottom: 20px;
+    margin-top: 120px;
+    color: #055659;
+    font-size: 32px;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 500;
+    @include screen($tablet-l){
+      font-size: 26px;
+      margin-bottom: 10px;
+      margin-top: 80px;
+    }
+  }
+
+
+  .catalogMore{
+    background-color: #e3e3e3 !important;
+    transition: 0.2s ease-in-out;
+    @include screen($mobile-l){
+      background-color: rgba(5, 86, 89, 0.2) !important;
+    }
+
+
+
+    .textCont{
+      height: 100%;
+      width: 80%;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center !important;
+      justify-content: center !important;
+
+      .name{
+        text-align: center;
+        margin-bottom: 10px;
+        color: #055659 !important;
+      }
+
+      .plusIcon{
+        fill: #055659;
+        font-size: 24px;
+        transition: 0.2s ease-in-out;
+      }
+    }
+
+    &:hover{
+      background-color: #055659 !important;
+
+      .name{
+        color: white !important;
+
+      }
+      .plusIcon{
+        fill: white !important  ;
+      }
+    }
+
+  }
 
   .catalogLink{
-    width: 30%;
-    margin-top: 15vh;
-    height: 80vh;
+    width: 19%;
+    height: 450px;
     text-decoration: none;
     box-shadow: none;
     transition: 0.3s ease-in-out;
@@ -21,15 +81,61 @@
     border-radius: 12px;
     display: flex;
     flex-direction: column;
+    @include screen($desktop){
+      height: 420px;
+    }
+    @include screen($tablet-l){
+      height: 360px;
+    }
+    @include screen($tablet-w){
+      height: 300px;
+    }
+    @include screen($tablet){
+      width: 30%;
+      height: 380px;
+      margin-bottom: 20px;
+    }
+    @include screen($tablet-m){
+      height: 330px;
+      width: 33%;
+    }
+    @include screen($mobile-l){
+      width: 98%;
+      flex-direction: row;
+      height: 200px;
+      margin-bottom: 12px;
+      padding: 10px;
+      background-color: rgba(5, 86, 89, 0.2);
+    }
 
 
     .catalogImg{
       width: 100%;
-      height: 80%;
+      height: 330px;
       object-fit: cover;
       object-position: top;
       transition: 0.3s ease-in-out;
       border-radius: 12px;
+      @include screen($desktop){
+        height: 300px;
+      }
+      @include screen($tablet-l){
+        height: 250px;
+      }
+      @include screen($tablet-w){
+        height: 200px;
+      }
+      @include screen($tablet){
+        height: 300px;
+      }
+      @include screen($tablet-m){
+        height: 250px;
+      }
+      @include screen($mobile-l){
+        height: 100%;
+        min-width: 130px;
+        width: 130px;
+      }
     }
 
     .textCont{
@@ -39,12 +145,25 @@
 
       .name{
         margin-top: 10px;
-        font-size: 28px;
+        font-size: 20px;
         font-family: 'Raleway', sans-serif;
         font-weight: 500;
         color: #055659;
         padding-left: 10px;
         transition: 0.3s ease-in-out;
+        @include screen($tablet-l){
+          font-size: 18px;
+        }
+        @include screen($tablet-w){
+          font-size: 15px;
+        }
+        @include screen($mobile-l){
+          font-size: 26px;
+          font-weight: 400;
+        }
+        @include screen($mobile-l){
+          margin-top: 16px;
+        }
       }
 
       .moreIcon{
@@ -52,6 +171,12 @@
         right: 20px;
         bottom: 0;
         transition: 0.3s ease-in-out;
+        @include screen($tablet-w){
+          width: 20px;
+        }
+        @include screen($mobile-l){
+          width: 50px;
+        }
       }
     }
 
@@ -64,6 +189,7 @@
 
       .textCont{
         .name{
+          color: #f8cd46;
         }
 
         .moreIcon{
