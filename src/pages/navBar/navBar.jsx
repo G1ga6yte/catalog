@@ -14,7 +14,7 @@ function NavBar() {
                     <img src={iconText} alt="" className="iconText"/>
                 </Link>
 
-                <a className="phoneLink" href="tel:+37477777777"> <IoIosCall className="icon" />
+                <a className="phoneLink" href="tel:+37499207090"> <IoIosCall className="icon" />
                     Կապվեք մեզ հետ</a>
             </div>
         </div>

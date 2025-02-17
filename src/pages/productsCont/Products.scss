@@ -3,6 +3,12 @@
 .ProductsContainer {
   max-width: 1200px;
   margin: 150px auto;
+  @include screen($desktop){
+    margin: 100px auto;
+  }
+  @include screen($tablet-w){
+    margin: 80px auto;
+  }
 
   .cont {
     width: 100%;
@@ -54,6 +60,15 @@
     transition: 0.3s ease-in-out;
     overflow: hidden;
     position: relative;
+    @include screen($desktop){
+      width: 32% !important;
+    }
+    @include screen($tablet-w){
+      width: 49% !important;
+    }
+    @include screen($tablet){
+      width: 100% !important;
+    }
 
     &:hover{
       box-shadow: rgba(0, 0, 0, 0.16) 0px 15px 36px 5px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;

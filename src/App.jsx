@@ -5,6 +5,7 @@ import NavBar from "./pages/navBar/navBar";
 import ProductsCont from "./pages/productsCont/productsCont";
 import Loading from "./pages/loading/loading";
 import {useCartContext} from "./cartContext";
+import ProductPage from "./pages/productPage/productPage";
 
 function App() {
     const {loading} = useCartContext()
@@ -17,6 +18,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Main/>} />
           <Route path="/products" element={<ProductsCont/>}/>
+          <Route path="/product/:id" element={<ProductPage/>}/>
       </Routes>
     </div>
   );

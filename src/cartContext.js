@@ -7,11 +7,13 @@ export const CartProvider = ({children}) => {
 
     const [loading, setLoading] = useState(false);
     const [activeType, setActiveType] = useState("Master")
+    const [product, setProduct] = useState(null)
 
 
 
     return(<CartContext.Provider value={{
-        loading, setLoading, activeType, setActiveType
+        loading, setLoading, activeType, setActiveType,
+        product, setProduct
     }}>
         {children}
     </CartContext.Provider> );

@@ -4,9 +4,10 @@ import {useCartContext} from "../../cartContext";
 import {MasterProducts} from "../../products/master";
 import {Products} from "../../products/products.js";
 import { FaBookmark } from "react-icons/fa6";
+import {useNavigate} from "react-router";
 
 function ProductsCont() {
-    const {loading, setLoading, activeType} = useCartContext()
+    const {loading, setLoading, activeType, setProduct} = useCartContext()
     const [activeProducts, setActiveProducts] = useState([])
 
 
@@ -36,6 +37,13 @@ function ProductsCont() {
 
     }, []);
 
+    const navigate = useNavigate();
+    const handleGoToProduct = (product) => {
+        setLoading(true)
+        navigate(`/product/${product.productCode}`)
+        setProduct(product)
+    }
+
     return (
         <div className='ProductsContainer'>
             <div className="cont">
@@ -44,7 +52,7 @@ function ProductsCont() {
                     {activeProducts.map((product, index) => {
                         let sale =Math.floor((Number(product.price)-Number(product.newPrice))/(Number(product.price)/100) )
                             return (
-                                <div  key={index} className="productCard">
+                                <div onClick={()=>handleGoToProduct(product)} key={index} className="productCard">
 
                                     {product.newPrice.length > 0 && <div className="saleMark">
                                         <FaBookmark className="markIcon" />
@@ -111,7 +119,7 @@ function ProductsCont() {
                                 let sale =Math.floor((Number(product.price)-Number(product.newPrice))/(Number(product.price)/100) )
 
                                 return (
-                                    <div  key={index} className="productCard">
+                                    <div  onClick={()=>handleGoToProduct(product)} key={index} className="productCard">
 
                                         {product.newPrice.length > 0 && <div className="saleMark">
                                             <FaBookmark className="markIcon" />
@@ -183,7 +191,7 @@ function ProductsCont() {
                                 let sale =Math.floor((Number(product.price)-Number(product.newPrice))/(Number(product.price)/100) )
 
                                 return (
-                                    <div  key={index} className="productCard">
+                                    <div  onClick={()=>handleGoToProduct(product)} key={index} className="productCard">
 
                                         {product.newPrice.length > 0 && <div className="saleMark">
                                             <FaBookmark className="markIcon" />
