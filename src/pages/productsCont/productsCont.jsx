@@ -58,10 +58,9 @@ function ProductsCont() {
                                     }
                                     <img className="img" src={product.image} alt=""/>
 
-                                    <div className="textBlock marginB12">
+                                    <div className="textBlock marginB6">
                                         <div className="nameCont">
                                             <p className="name">{product.name}</p>
-                                            <p className="prg">{product.description}</p>
                                         </div>
 
                                         <div className="priceCont">
@@ -71,6 +70,11 @@ function ProductsCont() {
                                             }
                                             {product.newPrice.length > 0 && <p className="oldPrice">{product.price}.00 </p>}
                                         </div>
+
+                                    </div>
+
+                                    <div className="textBlock marginB12">
+                                        <p className="prg">{product.description}</p>
 
                                     </div>
 
@@ -125,15 +129,25 @@ function ProductsCont() {
                                             <div className="nameCont">
                                                 <p className="name">{product.name}</p>
                                                 <p className="prg">{product.description}</p>
+
+                                                <div className="mobilePriceCont priceCont">
+                                                    {product.newPrice.length > 0 ?
+                                                        <p className="newPrice">{product.newPrice}.00 <span>AMD</span></p> :
+                                                        <p className="price">{product.price}.00 <span>AMD</span></p>
+                                                    }
+                                                    {product.newPrice.length > 0 && <p className="oldPrice">{product.price}.00 </p>}
+
+                                                </div>
+
                                             </div>
 
-                                            <div className="priceCont">
-                                                {product.newPrice.length > 0 ?
-                                                    <p className="newPrice">{product.newPrice}.00 <span>AMD</span></p> :
-                                                    <p className="price">{product.price}.00 <span>AMD</span></p>
-                                                }
-                                                {product.newPrice.length > 0 && <p className="oldPrice">{product.price}.00 </p>}
-                                            </div>
+                                            {/*<div className="priceCont">*/}
+                                            {/*    {product.newPrice.length > 0 ?*/}
+                                            {/*        <p className="newPrice">{product.newPrice}.00 <span>AMD</span></p> :*/}
+                                            {/*        <p className="price">{product.price}.00 <span>AMD</span></p>*/}
+                                            {/*    }*/}
+                                            {/*    {product.newPrice.length > 0 && <p className="oldPrice">{product.price}.00 </p>}*/}
+                                            {/*</div>*/}
 
                                         </div>
 
@@ -187,15 +201,25 @@ function ProductsCont() {
                                             <div className="nameCont">
                                                 <p className="name">{product.name}</p>
                                                 <p className="prg">{product.description}</p>
+
+                                                <div className="mobilePriceCont priceCont">
+                                                    {product.newPrice.length > 0 ?
+                                                        <p className="newPrice">{product.newPrice}.00 <span>AMD</span></p> :
+                                                        <p className="price">{product.price}.00 <span>AMD</span></p>
+                                                    }
+                                                    {product.newPrice.length > 0 && <p className="oldPrice">{product.price}.00 </p>}
+
+                                                </div>
+
                                             </div>
 
-                                            <div className="priceCont">
-                                                {product.newPrice.length > 0 ?
-                                                    <p className="newPrice">{product.newPrice}.00 <span>AMD</span></p> :
-                                                    <p className="price">{product.price}.00 <span>AMD</span></p>
-                                                }
-                                                {product.newPrice.length > 0 && <p className="oldPrice">{product.price}.00 </p>}
-                                            </div>
+                                            {/*<div className="priceCont">*/}
+                                            {/*    {product.newPrice.length > 0 ?*/}
+                                            {/*        <p className="newPrice">{product.newPrice}.00 <span>AMD</span></p> :*/}
+                                            {/*        <p className="price">{product.price}.00 <span>AMD</span></p>*/}
+                                            {/*    }*/}
+                                            {/*    {product.newPrice.length > 0 && <p className="oldPrice">{product.price}.00 </p>}*/}
+                                            {/*</div>*/}
 
                                         </div>
 
