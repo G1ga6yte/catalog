@@ -32,6 +32,19 @@ function Main() {
 
             <p className="header">Каталоги`</p>
 
+            <button onClick={()=>handleChangeRoute("Inter")} className="catalogLink" >
+                <img src={catalog2} className="catalogImg" alt=""/>
+
+                <div className="textCont">
+                    <p className="name">
+                        Каталог продукции Inter Troton
+                    </p>
+
+                    <img src={moreIcon} className="moreIcon" alt=""/>
+
+                </div>
+            </button>
+
             <button onClick={()=>handleChangeRoute("Master")} className="catalogLink" >
                 <img src={catalog1} className="catalogImg" alt=""/>
 
@@ -47,18 +60,7 @@ function Main() {
 
             </button>
 
-            <button onClick={()=>handleChangeRoute("Inter")} className="catalogLink" >
-                <img src={catalog2} className="catalogImg" alt=""/>
 
-                <div className="textCont">
-                    <p className="name">
-                        Каталог продукции Inter Troton
-                    </p>
-
-                    <img src={moreIcon} className="moreIcon" alt=""/>
-
-                </div>
-            </button>
 
             <button onClick={()=>handleChangeRoute("Rangers")} className="catalogLink" >
                 <img src={catalog3} className="catalogImg" alt=""/>

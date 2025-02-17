@@ -12,9 +12,23 @@
   .phoneType {
     width: 100%;
     display: none;
+    padding: 0 5px;
     @include screen($tablet) {
       display: flex;
+      justify-content: space-between;
     }
+
+    .productsLine {
+      display: flex;
+      flex-direction: column;
+      width: 49%;
+
+      .productCard{
+        width: 100%;
+      }
+    }
+
+
   }
   .desktopType{
     padding: 0 10px;
@@ -93,7 +107,120 @@
       z-index: 3;
     }
 
+    .marginB12{
+      margin-bottom: 12px;
+    }
+    .marginB6{
+      margin-bottom: 6px;
+    }
 
+    .miniHeader{
+      font-size: 16px;
+      font-family: 'Raleway', sans-serif;
+      font-weight: 600;
+      color: #3c3c3c;
+    }
+
+
+    .textBlock{
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+
+
+      .nameCont{
+        .name{
+          font-size: 20px;
+          font-family: 'Raleway', sans-serif;
+          font-weight: 700;
+          color: #055659;
+          margin-bottom: 6px;
+        }
+        .prg{
+          font-size: 14px;
+          color: #5f5f5f;
+          font-family: 'Raleway', sans-serif;
+          font-weight: 500;
+        }
+      }
+
+      .priceCont{
+        .price{
+          font-size: 20px;
+          color: brown;
+          font-family: 'Raleway', sans-serif;
+          white-space: nowrap;
+          font-weight: 700;
+          span{
+            font-size: 12px;
+          }
+        }
+
+        .newPrice{
+          font-size: 20px;
+          color: brown;
+          font-family: 'Raleway', sans-serif;
+          white-space: nowrap;
+          font-weight: 700;
+          span{
+            font-size: 12px;
+          }
+        }
+
+        .oldPrice{
+          width: max-content;
+          font-size: 18px;
+          font-family: 'Raleway', sans-serif;
+          color: #5f5f5f;
+          font-weight: 500;
+          position: relative;
+          &:after{
+            content: ' ';
+            position: absolute;
+            height: 2px;
+            width: 100%;
+            background-color: #5f5f5f;
+            bottom: 8px;
+            left: 0;
+            transform: rotate(-10deg);
+          }
+        }
+      }
+
+
+      .sellingPrice{
+        font-size: 16px;
+        font-weight: 700;
+        font-family: 'Raleway', sans-serif;
+        color: #3c3c3c;
+        span{
+          font-size: 12px;
+        }
+      }
+
+
+
+    }
+
+
+    .colorsCont{
+      display: flex;
+      justify-content: space-between;
+      align-content: center;
+
+      .colors{
+        display: flex;
+        gap: 6px;
+
+        .colorBlock{
+          border: 1px solid darkgray;
+          border-radius: 50%;
+          width: 24px;
+          height: 24px;
+        }
+      }
+
+    }
 
     .img{
       width: 100%;

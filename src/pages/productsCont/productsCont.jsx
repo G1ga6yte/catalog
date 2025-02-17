@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import './Products.scss';
 import {useCartContext} from "../../cartContext";
+import {MasterProducts} from "../../products/master";
 import {Products} from "../../products/products.js";
 import { FaBookmark } from "react-icons/fa6";
 
@@ -9,20 +10,31 @@ function ProductsCont() {
     const [activeProducts, setActiveProducts] = useState([])
 
 
+    // useEffect(() => {
+    //     setActiveProducts([])
+    //     Products.forEach((product, index) => {
+    //         if (product.mark === activeType) {
+    //             setActiveProducts(activeProducts => [...activeProducts, product])
+    //         }
+    //         if (index === activeProducts.length - 1) {
+    //             setLoading(false)
+    //         }
+    //     })
+    //     setLoading(false)
+    //
+    //
+    // }, [])
+
+
     useEffect(() => {
-        setActiveProducts([])
-        Products.forEach((product, index) => {
-            if (product.mark === activeType) {
-                setActiveProducts(activeProducts => [...activeProducts, product])
-            }
-            if (index === activeProducts.length - 1) {
-                setLoading(false)
-            }
-        })
-        setLoading(false)
+        if (activeType === "Master"){
+            setActiveProducts(MasterProducts)
+        }
+        setTimeout(()=>{
+            setLoading(false)
+        }, 500)
 
-
-    }, [])
+    }, []);
 
     return (
         <div className='ProductsContainer'>
@@ -46,7 +58,7 @@ function ProductsCont() {
                                     }
                                     <img className="img" src={product.image} alt=""/>
 
-                                    <div className="textBlock">
+                                    <div className="textBlock marginB12">
                                         <div className="nameCont">
                                             <p className="name">{product.name}</p>
                                             <p className="prg">{product.description}</p>
@@ -54,13 +66,34 @@ function ProductsCont() {
 
                                         <div className="priceCont">
                                             {product.newPrice.length > 0 ?
-                                                <p className="newPrice">{product.newPrice}.00 Դրամ</p> :
-                                                <p className="price">{product.price}.00 Դրամ</p>
+                                                <p className="newPrice">{product.newPrice}.00 <span>AMD</span></p> :
+                                                <p className="price">{product.price}.00 <span>AMD</span></p>
                                             }
                                             {product.newPrice.length > 0 && <p className="oldPrice">{product.price}.00 </p>}
                                         </div>
 
                                     </div>
+
+                                    <div className="textBlock marginB6">
+                                        <span className="miniHeader">Цена продажи:</span>
+                                        <span className="sellingPrice">{product.sellingPrice}.00 <span>AMD</span></span>
+                                    </div>
+
+                                    {product.colors ?
+                                        <div className="colorsCont">
+                                            <span className="miniHeader">Цветы:</span>
+                                            <div className="colors">
+                                                {product.colors.map((color, index)=>{
+                                                    return(
+                                                        <div key={index} style={{
+                                                            backgroundColor: color
+                                                        }} className="colorBlock">
+                                                        </div>
+                                                    )
+                                                })}
+                                            </div>
+                                        </div> : ""
+                                    }
                                 </div>
                             )
                     })}
@@ -71,10 +104,59 @@ function ProductsCont() {
                     <div className="productsLine">
                         {activeProducts.map((product, index) => {
                             if (index % 2 === 0) {
+                                let sale =Math.floor((Number(product.price)-Number(product.newPrice))/(Number(product.price)/100) )
+
                                 return (
-                                    <div key={index} className="productCard">
-                                        <p className="name">{product.name}</p>
+                                    <div  key={index} className="productCard">
+
+                                        {product.newPrice.length > 0 && <div className="saleMark">
+                                            <FaBookmark className="markIcon" />
+                                            <p className="salePrg">{sale}%</p>
+                                        </div>}
+
+                                        {product.new ?
+                                            <div className="newMark">
+                                                <p>NEW</p>
+                                            </div> : ""
+                                        }
                                         <img className="img" src={product.image} alt=""/>
+
+                                        <div className="textBlock marginB12">
+                                            <div className="nameCont">
+                                                <p className="name">{product.name}</p>
+                                                <p className="prg">{product.description}</p>
+                                            </div>
+
+                                            <div className="priceCont">
+                                                {product.newPrice.length > 0 ?
+                                                    <p className="newPrice">{product.newPrice}.00 <span>AMD</span></p> :
+                                                    <p className="price">{product.price}.00 <span>AMD</span></p>
+                                                }
+                                                {product.newPrice.length > 0 && <p className="oldPrice">{product.price}.00 </p>}
+                                            </div>
+
+                                        </div>
+
+                                        <div className="textBlock marginB6">
+                                            <span className="miniHeader">Цена продажи:</span>
+                                            <span className="sellingPrice">{product.sellingPrice}.00 <span>AMD</span></span>
+                                        </div>
+
+                                        {product.colors ?
+                                            <div className="colorsCont">
+                                                <span className="miniHeader">Цветы:</span>
+                                                <div className="colors">
+                                                    {product.colors.map((color, index)=>{
+                                                        return(
+                                                            <div key={index} style={{
+                                                                backgroundColor: color
+                                                            }} className="colorBlock">
+                                                            </div>
+                                                        )
+                                                    })}
+                                                </div>
+                                            </div> : ""
+                                        }
                                     </div>
                                 )
                             }
@@ -84,12 +166,59 @@ function ProductsCont() {
                     <div className="productsLine">
                         {activeProducts.map((product, index) => {
                             if (index % 2 === 1) {
+                                let sale =Math.floor((Number(product.price)-Number(product.newPrice))/(Number(product.price)/100) )
+
                                 return (
-                                    <div key={index} className="productCard">
-                                        <p className="name">{product.name}</p>
+                                    <div  key={index} className="productCard">
 
+                                        {product.newPrice.length > 0 && <div className="saleMark">
+                                            <FaBookmark className="markIcon" />
+                                            <p className="salePrg">{sale}%</p>
+                                        </div>}
 
+                                        {product.new ?
+                                            <div className="newMark">
+                                                <p>NEW</p>
+                                            </div> : ""
+                                        }
                                         <img className="img" src={product.image} alt=""/>
+
+                                        <div className="textBlock marginB12">
+                                            <div className="nameCont">
+                                                <p className="name">{product.name}</p>
+                                                <p className="prg">{product.description}</p>
+                                            </div>
+
+                                            <div className="priceCont">
+                                                {product.newPrice.length > 0 ?
+                                                    <p className="newPrice">{product.newPrice}.00 <span>AMD</span></p> :
+                                                    <p className="price">{product.price}.00 <span>AMD</span></p>
+                                                }
+                                                {product.newPrice.length > 0 && <p className="oldPrice">{product.price}.00 </p>}
+                                            </div>
+
+                                        </div>
+
+                                        <div className="textBlock marginB6">
+                                            <span className="miniHeader">Цена продажи:</span>
+                                            <span className="sellingPrice">{product.sellingPrice}.00 <span>AMD</span></span>
+                                        </div>
+
+                                        {product.colors ?
+                                            <div className="colorsCont">
+                                                <span className="miniHeader">Цветы:</span>
+                                                <div className="colors">
+                                                    {product.colors.map((color, index)=>{
+                                                        return(
+                                                            <div key={index} style={{
+                                                                backgroundColor: color
+                                                            }} className="colorBlock">
+                                                            </div>
+                                                        )
+                                                    })}
+                                                </div>
+                                            </div> : ""
+                                        }
                                     </div>
                                 )
                             }
