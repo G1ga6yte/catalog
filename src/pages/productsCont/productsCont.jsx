@@ -5,11 +5,12 @@ import {MasterProducts} from "../../products/master";
 import {Products} from "../../products/products.js";
 import { FaBookmark } from "react-icons/fa6";
 import {useNavigate} from "react-router";
+import {InterProducts} from "../../products/inter";
 
 function ProductsCont() {
-    const {loading, setLoading, activeType, setProduct} = useCartContext()
+    const {loading, setLoading, activeType, setProduct, setActiveType} = useCartContext()
     const [activeProducts, setActiveProducts] = useState([])
-
+    const navigate = useNavigate()
 
     // useEffect(() => {
     //     setActiveProducts([])
@@ -31,13 +32,16 @@ function ProductsCont() {
         if (activeType === "Master"){
             setActiveProducts(MasterProducts)
         }
+        if (activeType === "Inter"){
+            setActiveProducts(InterProducts)
+        }
         setTimeout(()=>{
             setLoading(false)
         }, 500)
 
-    }, []);
 
-    const navigate = useNavigate();
+    }, [activeType, setActiveType]);
+
     const handleGoToProduct = (product) => {
         setLoading(true)
         navigate(`/product/${product.productCode}`)

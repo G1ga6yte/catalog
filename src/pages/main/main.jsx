@@ -8,6 +8,7 @@ import catalog4 from "./catalog_4.webp"
 import moreIcon from "./more.svg"
 import { FaPlusCircle } from "react-icons/fa";
 import {useCartContext} from "../../cartContext";
+import Cookies from "js-cookie";
 
 
 
@@ -25,6 +26,7 @@ function Main() {
         setLoading(true)
         setActiveType(type)
         navigate("/products")
+        Cookies.set('Type', type, { expires: 365 });
     }
 
     return (

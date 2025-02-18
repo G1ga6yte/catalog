@@ -1,13 +1,25 @@
-import React, {createContext, useContext, useState} from "react";
-
+import React, {createContext, useContext, useEffect, useState} from "react";
+import Cookies from 'js-cookie';
 
 const CartContext = createContext();
 
 export const CartProvider = ({children}) => {
 
     const [loading, setLoading] = useState(false);
-    const [activeType, setActiveType] = useState("Master")
+    const [activeType, setActiveType] = useState("")
     const [product, setProduct] = useState(null)
+
+    useEffect(() => {
+        const state = Cookies.get('Type')
+        console.log(state)
+        if (state){
+            setActiveType(state)
+        }
+    }, []);
+
+    useEffect(()=>{
+        Cookies.set('Type', activeType, { expires: 365 });
+    }, [activeType, setActiveType])
 
 
 
