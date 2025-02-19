@@ -3,22 +3,22 @@
   "name": "Troton Armenia -  Catalog",
   "icons": [
     {
-      "src": "Troton-logo-footer.svg",
+      "src": "./Troton-logo-footer.svg",
       "sizes": "64x64 32x32 24x24 16x16",
       "type": "image/svg+xml"
     },
     {
-      "src": "Troton-logo-footer.svg",
+      "src": "./Troton-logo-footer.svg",
       "type": "image/svg+xml",
       "sizes": "192x192"
     },
     {
-      "src": "Troton-logo-footer.svg",
+      "src": "./Troton-logo-footer.svg",
       "type": "image/svg+xml",
       "sizes": "512x512"
     }
   ],
-  "start_url": ".",
+  "start_url": "/",
   "display": "standalone",
   "theme_color": "#000000",
   "background_color": "#ffffff"
