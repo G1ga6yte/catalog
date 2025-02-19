@@ -16,7 +16,7 @@ function NavBar() {
                 </button>
 
                 <a className="phoneLink" href="tel:+37499207090"> <IoIosCall className="icon" />
-                    Կապվեք մեզ հետ</a>
+                    Свяжитесь с нами</a>
             </div>
         </div>
     );
