@@ -68,7 +68,10 @@ function ProductsCont() {
                                             <p>NEW</p>
                                         </div> : ""
                                     }
-                                    <img className="img" src={product.image} alt=""/>
+
+                                    <div className="imgBlock">
+                                        <img className="img" src={product.image} alt=""/>
+                                    </div>
 
                                     <div className="textBlock marginB6">
                                         <div className="nameCont">
@@ -135,7 +138,11 @@ function ProductsCont() {
                                                 <p>NEW</p>
                                             </div> : ""
                                         }
-                                        <img className="img" src={product.image} alt=""/>
+
+                                        <div className="imgBlock">
+                                            <img className="img" src={product.image} alt=""/>
+
+                                        </div>
 
                                         <div className="textBlock marginB12">
                                             <div className="nameCont">
@@ -207,7 +214,10 @@ function ProductsCont() {
                                                 <p>NEW</p>
                                             </div> : ""
                                         }
-                                        <img className="img" src={product.image} alt=""/>
+                                        <div className="imgBlock">
+                                            <img className="img" src={product.image} alt=""/>
+
+                                        </div>
 
                                         <div className="textBlock marginB12">
                                             <div className="nameCont">

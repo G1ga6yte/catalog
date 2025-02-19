@@ -2,17 +2,18 @@ import React from 'react';
 import './NavBar.scss';
 import iconImg from "./Troton-logo-footer.svg"
 import iconText from "./Troton.svg"
-import {Link} from "react-router";
+import {Link, useNavigate} from "react-router";
 import { IoIosCall } from "react-icons/io";
 
 function NavBar() {
+    const navigate = useNavigate();
     return (
         <div className='NavBarContainer'>
             <div className="cont">
-                <Link className="homeLink" to="/">
+                <button onClick={()=>navigate(-1)} className="homeLink" >
                     <img src={iconImg} alt="" className="iconImg" />
                     <img src={iconText} alt="" className="iconText"/>
-                </Link>
+                </button>
 
                 <a className="phoneLink" href="tel:+37499207090"> <IoIosCall className="icon" />
                     Կապվեք մեզ հետ</a>
