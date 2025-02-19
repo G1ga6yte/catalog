@@ -6,6 +6,7 @@ import ProductsCont from "./pages/productsCont/productsCont";
 import Loading from "./pages/loading/loading";
 import {useCartContext} from "./cartContext";
 import ProductPage from "./pages/productPage/productPage";
+import Favorites from "./pages/favorites/favorites";
 
 function App() {
     const {loading} = useCartContext()
@@ -19,6 +20,7 @@ function App() {
         <Route path="/" element={<Main/>} />
           <Route path="/products" element={<ProductsCont/>}/>
           <Route path="/product/:id" element={<ProductPage/>}/>
+          <Route path="/favorites" element={<Favorites/>}/>
       </Routes>
     </div>
   );
