@@ -1,9 +1,13 @@
+@import "../../source/mixin.scss";
 .FavoritesContainer{
     max-width: 1200px;
   padding: 120px 0 0;
   margin: 0 auto;
   width: 100%;
   min-height: 100vh;
+  @include screen($tablet){
+    padding: 80px 0;
+  }
 
   .prgCont{
     height: Calc(100vh - 120px);
@@ -30,8 +34,16 @@
   .table{
     width: 100%;
     background-color: #e3e3e3;
+    max-width: 100%;
+    @include screen($tablet){
+      width: 98%;
+      margin: 0 auto;
+    }
     .firstTH{
       width: 150px;
+      @include screen($tablet){
+        width: 120px;
+      }
     }
     tr{
       width: 100%;
@@ -40,17 +52,23 @@
       background-color: white;
       padding: 8px;
       font-size: 15px;
-      font-family: 'Raleway', sans-serif;
+      font-family:  sans-serif;
       font-weight: 600;
-
+      @include screen($tablet){
+        padding: 6px;
+        font-size: 14px;
+      }
     }
     td{
       background-color: white;
       text-align: center;
       padding: 6px;
       font-size: 14px;
-      font-family: 'Raleway', sans-serif;
+      font-family:  sans-serif;
       font-weight: 500;
+      @include screen($tablet){
+        font-size: 13px;
+      }
     }
     .endLine{
       td{

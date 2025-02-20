@@ -8,7 +8,8 @@ import { FaRegStar, FaStar } from "react-icons/fa";
 function ProductPage(){
     const {product, setLoading, activeType} = useCartContext()
     const navigate = useNavigate();
-
+    const [isFavorite, setIsFavorite] = useState(false);
+    const [favorites, setFavorites] = useState([]);
     useEffect(() => {
         if (!product){
             navigate("/")
@@ -21,7 +22,6 @@ function ProductPage(){
 
     }, []);
 
-    const [favorites, setFavorites] = useState([]);
 
     // Load favorites from cookies on component mount
     useEffect(() => {
@@ -29,10 +29,11 @@ function ProductPage(){
         if (savedFavorites) {
             setFavorites(JSON.parse(savedFavorites));
         }
+        const isFavorite = favorites.some(item => item.productCode === product.productCode);
+        setIsFavorite(isFavorite);
     }, []);
 
     // Check if product is in favorites
-    const isFavorite = favorites.some(item => item.productCode === product.productCode);
 
     // Toggle favorite (Add or Remove)
     const toggleFavorite = () => {
@@ -40,9 +41,11 @@ function ProductPage(){
 
         if (isFavorite) {
             // Remove product from favorites
+            setIsFavorite(false)
             updatedFavorites = favorites.filter(item => item.productCode !== product.productCode);
         } else {
             // Add product to favorites
+            setIsFavorite(true)
             updatedFavorites = [...favorites, { productCode: product.productCode, type: "Inter", peaces: 1 }];
         }
 

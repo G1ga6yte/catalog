@@ -2,8 +2,10 @@ import React, {useEffect, useState} from 'react';
 import './Favorites.scss';
 import Cookies from "js-cookie";
 import {InterProducts} from "../../products/inter";
+import {useCartContext} from "../../cartContext";
 
 function Favorites() {
+    const {setLoading} = useCartContext()
     const [favorites, setFavorites] = useState([]);
     const [sum, setSum] = useState(0);
     const HandleChange = (newFavorites) => {
@@ -15,6 +17,10 @@ function Favorites() {
         setSum(summa)
     }
     useEffect(() => {
+        window.scrollTo(0,0);
+        setTimeout(()=>{
+            setLoading(false)
+        } ,500)
         const favoritesCookie = Cookies.get("favorites");
 
         if (favoritesCookie) {
@@ -75,7 +81,7 @@ function Favorites() {
                             <td></td>
                             <td></td>
                             <td>Обший итог: </td>
-                            <td>{sum}</td>
+                            <td>{sum}.00</td>
                         </tr>
                     </table>
                 </div>

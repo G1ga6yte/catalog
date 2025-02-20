@@ -9,6 +9,7 @@ import moreIcon from "./more.svg"
 import { FaPlusCircle } from "react-icons/fa";
 import {useCartContext} from "../../cartContext";
 import Cookies from "js-cookie";
+import { FaStar } from "react-icons/fa";
 
 
 
@@ -22,19 +23,25 @@ function Main() {
 
     }, []);
 
-    const handleChangeRoute = (type) => {
+    const handleChangeRoute = (type, route) => {
         setLoading(true)
         setActiveType(type)
-        navigate("/products")
+        navigate(route)
         Cookies.set('Type', type, { expires: 365 });
     }
 
     return (
         <div className='MainContainer'>
 
-            <p className="header">Каталоги`</p>
+            <div className="headerBlock">
+                <p className="header">Каталоги`</p>
+                <button onClick={()=>handleChangeRoute("Inter", "/favorites")} className="favoriteBtn">
+                    <FaStar  className="favoriteIcon"/>
+                    Фавориты
+                </button>
+            </div>
 
-            <button onClick={()=>handleChangeRoute("Inter")} className="catalogLink" >
+            <button onClick={()=>handleChangeRoute("Inter", "/products")} className="catalogLink" >
                 <img src={catalog2} className="catalogImg" alt=""/>
 
                 <div className="textCont">
@@ -47,7 +54,7 @@ function Main() {
                 </div>
             </button>
 
-            <button onClick={()=>handleChangeRoute("Master")} className="catalogLink" >
+            <button onClick={()=>handleChangeRoute("Master", "/products")} className="catalogLink" >
                 <img src={catalog1} className="catalogImg" alt=""/>
 
 
@@ -64,7 +71,7 @@ function Main() {
 
 
 
-            <button onClick={()=>handleChangeRoute("Rangers")} className="catalogLink" >
+            <button onClick={()=>handleChangeRoute("Rangers", "/products")} className="catalogLink" >
                 <img src={catalog3} className="catalogImg" alt=""/>
 
 
@@ -78,7 +85,7 @@ function Main() {
                 </div>
             </button>
 
-            <button onClick={()=>handleChangeRoute("Brayt")} className="catalogLink" >
+            <button onClick={()=>handleChangeRoute("Brayt", "/products")} className="catalogLink" >
                 <img src={catalog4} className="catalogImg" alt=""/>
 
 
@@ -92,7 +99,7 @@ function Main() {
                 </div>
             </button>
 
-            <button onClick={()=>handleChangeRoute("More")} className="catalogLink catalogMore" >
+            <button onClick={()=>handleChangeRoute("More", "/products")} className="catalogLink catalogMore" >
 
                 <div className="textCont">
                     <p className="name">
@@ -100,9 +107,6 @@ function Main() {
                     </p>
 
                     <FaPlusCircle className="plusIcon" />
-
-
-                    {/*<img src={moreIcon} className="moreIcon" alt=""/>*/}
 
                 </div>
             </button>
