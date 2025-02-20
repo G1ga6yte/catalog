@@ -40,9 +40,9 @@
       margin: 0 auto;
     }
     .firstTH{
-      width: 150px;
+      width: 100px;
       @include screen($tablet){
-        width: 120px;
+        width: 70px;
       }
     }
     tr{

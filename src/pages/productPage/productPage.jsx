@@ -3,22 +3,21 @@ import "./ProductPage.scss"
 import {useCartContext} from "../../cartContext";
 import {useNavigate} from "react-router";
 import Cookies from "js-cookie";
-import { FaRegStar, FaStar } from "react-icons/fa";
+import {FaRegStar, FaStar} from "react-icons/fa";
 
-function ProductPage(){
+function ProductPage() {
     const {product, setLoading, activeType} = useCartContext()
     const navigate = useNavigate();
-    const [isFavorite, setIsFavorite] = useState(false);
     const [favorites, setFavorites] = useState([]);
     useEffect(() => {
-        if (!product){
+        if (!product) {
             navigate("/")
             return;
         }
-        window.scrollTo(0,0);
-        setTimeout(()=>{
+        window.scrollTo(0, 0);
+        setTimeout(() => {
             setLoading(false)
-        } ,500)
+        }, 500)
 
     }, []);
 
@@ -29,33 +28,30 @@ function ProductPage(){
         if (savedFavorites) {
             setFavorites(JSON.parse(savedFavorites));
         }
-        const isFavorite = favorites.some(item => item.productCode === product.productCode);
-        setIsFavorite(isFavorite);
     }, []);
 
     // Check if product is in favorites
 
     // Toggle favorite (Add or Remove)
-    const toggleFavorite = () => {
+    const toggleFavorite = (article) => {
         let updatedFavorites;
+        const isFavorite = favorites.some(item => item.article === article);
 
         if (isFavorite) {
             // Remove product from favorites
-            setIsFavorite(false)
-            updatedFavorites = favorites.filter(item => item.productCode !== product.productCode);
+            updatedFavorites = favorites.filter(item => item.article !== article);
         } else {
             // Add product to favorites
-            setIsFavorite(true)
-            updatedFavorites = [...favorites, { productCode: product.productCode, type: activeType, peaces: 1 }];
+            updatedFavorites = [...favorites, {productCode: product.productCode, article: article, type: activeType, peaces: 1}];
         }
 
         // Update state and save in cookies
         setFavorites(updatedFavorites);
-        Cookies.set("favorites", JSON.stringify(updatedFavorites), { expires: 365 });
+        Cookies.set("favorites", JSON.stringify(updatedFavorites), {expires: 365});
     };
 
 
-    return(
+    return (
         product !== null &&
         <div className="ProductPageContainer">
             <div className="mainInfoCont">
@@ -63,12 +59,7 @@ function ProductPage(){
                     <div className="nameCont">
                         <p className="name">{product.name}</p>
 
-                        <button className="starBtn" onClick={()=>toggleFavorite()}>
-                            {isFavorite ?
-                                <FaStar className="starIcon"/> :
-                                <FaRegStar className="starIcon"/>
-                            }
-                        </button>
+
 
                     </div>
                     <p className="prg">{product.description}</p>
@@ -81,29 +72,42 @@ function ProductPage(){
 
                     {product.info &&
                         <div className="infoCont">
-                            {product.info[0] &&
-                                <div className="headersCont">
-                                    {product.info[0].color && <span>цвет</span>}
-                                    {product.info[0].article && <span>номер артикула</span>}
-                                    {product.info[0].volume && <span>объём</span>}
-                                    {product.info[0].peacesInBox && <span>штук в коробке</span>}
-                                </div>
-                            }
-                            {product.info.length > 0 && product.info.map((item, index)=>{
-                                return(
-                                    <div className="infoLine">
-                                        {item.color && <span>{item.color}</span>}
-                                        {item.article && <span>{item.article}</span>}
-                                        {item.volume && <span>{item.volume}</span>}
-                                        {item.peacesInBox && <span>{item.peacesInBox}</span>}
+                            <table className="infoTable">
+                                {product.info[0] &&
+                                    <tr className="headersCont">
+                                        {product.info[0].color && <th>цвет</th>}
+                                        {product.info[0].article && <th>номер артикула</th>}
+                                        {product.info[0].volume && <th>объём</th>}
+                                        {product.info[0].peacesInBox && <th>штук в коробке</th>}
+                                        <th> </th>
+                                    </tr>
+                                }
+                                {product.info.length > 0 && product.info.map((item, index) => {
+                                    const isFavorite = favorites.some(fav => fav.article === item.article);
 
-                                    </div>
-                                )
-                            })}
+
+                                    return (
+                                        <tr className="infoLine">
+                                            {item.color && <td>{item.color}</td>}
+                                            {item.article && <td>{item.article}</td>}
+                                            {item.volume && <td>{item.volume}</td>}
+                                            {item.peacesInBox && <td>{item.peacesInBox}</td>}
+                                            <td>
+                                                <button className="starBtn" onClick={() => toggleFavorite(item.article)}>
+                                                    {isFavorite ?
+                                                        <FaStar className="starIcon"/> :
+                                                        <FaRegStar className="starIcon"/>
+                                                    }
+                                                </button>
+                                            </td>
+
+                                        </tr>
+                                    )
+                                })}
+                            </table>
                         </div>
                     }
                 </div>
-
 
 
                 <div className="imageContainer">
@@ -124,8 +128,8 @@ function ProductPage(){
                     <p className="header">{product.use.header}</p>
 
                     <div className="typesCont">
-                        {product.use.types.map((item, index)=>{
-                            return(
+                        {product.use.types.map((item, index) => {
+                            return (
                                 <div className="type" key={index}>
                                     <div className="imgBlock">
                                         <img src={item.img} className="typeImage" alt=""/>

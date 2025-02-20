@@ -51,20 +51,7 @@
           margin-bottom: 16px;
         }
 
-        .starBtn{
-          border: none;
-          cursor: pointer;
-          background-color: transparent;
-          outline: none;
-          .starIcon{
-            font-size: 40px;
-            fill: #f8cd46;
-            transition: 0.2s ease-in-out;
-            &:hover{
-              scale: 1.1;
-            }
-          }
-        }
+
 
 
 
@@ -115,13 +102,17 @@
       .infoCont{
         width: 100%;
 
+        .infoTable{
+          width: 100%;
+        }
+
         .headersCont{
           display: flex;
           justify-content: space-between;
           padding: 10px 5px;
           border-bottom: 1px solid #e3e3e3;
           align-items: center;
-          span{
+          th{
             display: block;
             text-align: center;
             width: 22%;
@@ -141,7 +132,7 @@
           padding: 15px 5px;
           border-bottom: 1px solid #e3e3e3;
 
-          span{
+          td{
             display: block;
             text-align: center;
             width: 22%;
@@ -149,6 +140,21 @@
             font-size: 14px;
             font-family:  sans-serif;
             font-weight: 500;
+            line-height: 30px;
+          }
+          .starBtn{
+            border: none;
+            cursor: pointer;
+            background-color: transparent;
+            outline: none;
+            .starIcon{
+              font-size: 24px;
+              fill: #f8cd46;
+              transition: 0.2s ease-in-out;
+              &:hover{
+                scale: 1.1;
+              }
+            }
           }
         }
 

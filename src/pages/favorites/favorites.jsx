@@ -35,14 +35,23 @@ function Favorites() {
             parsedFavorites.forEach((item) => {
                 if (item.type === "Inter") {
                     let product = InterProducts.find((product) => product.productCode === item.productCode);
+
+
+
                     if (product) {
-                        newFavorites.push({ ...product, peaces: 1, type: item.type }); // Make sure to create a new object
+                        let itemInfo = product.info.find((el)=> el.article === item.article)
+                        if (itemInfo){
+                            newFavorites.push({ ...product, peaces: 1, type: item.type, itemInfo}); // Make sure to create a new object
+                        }
                     }
                 }
                 if (item.type === "Master") {
                     let product = MasterProducts.find((product) => product.productCode === item.productCode);
                     if (product) {
-                        newFavorites.push({ ...product, peaces: 1, type: item.type }); // Make sure to create a new object
+                        let itemInfo = product.info.find((el)=> el.article === item.article)
+                        if (itemInfo){
+                            newFavorites.push({ ...product, peaces: 1, type: item.type, itemInfo }); // Make sure to create a new object
+                        }
                     }
                 }
             });
@@ -56,13 +65,16 @@ function Favorites() {
     }, []);
 
     const handleSendEmail = () => {
-        const products = favorites.map(item => item.name).join(', ');
+        const products = favorites.map(item => {
+            return {
+                name: item.name
+            }
+        }).join(', ');
 
         const templateParams = {
             user_email: "sargsyan.vache.02@gmail.com",
             products: products,
             from_name: "Vache",
-            to_name: "Armen Aghababyan",
             message: products
         };
 
@@ -87,6 +99,7 @@ function Favorites() {
                 <div className="tableCont">
                     <table className="table" >
                         <tr className="tr">
+                            <th>Артикул</th>
                             <th className="firstTH">Продукт</th>
                             <th>Название</th>
                             <th>Штук</th>
@@ -96,6 +109,7 @@ function Favorites() {
                         {favorites.map((item, index) => {
                             return (
                                 <tr key={index}>
+                                    <td>{item.itemInfo.article}<br/>({item.itemInfo.volume})<br/>({item.itemInfo.color})</td>
                                     <td><img className="itemImg" src={item.image} alt=""/></td>
                                     <td>{item.name}</td>
                                     <td>{item.peaces}</td>
@@ -105,6 +119,7 @@ function Favorites() {
                             )
                         })}
                         <tr className="endLine">
+                            <td></td>
                             <td></td>
                             <td></td>
                             <td></td>
