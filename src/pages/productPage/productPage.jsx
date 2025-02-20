@@ -1,10 +1,12 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import "./ProductPage.scss"
 import {useCartContext} from "../../cartContext";
 import {useNavigate} from "react-router";
+import Cookies from "js-cookie";
+import { FaRegStar, FaStar } from "react-icons/fa";
 
 function ProductPage(){
-    const {product, setLoading} = useCartContext()
+    const {product, setLoading, activeType} = useCartContext()
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -16,14 +18,56 @@ function ProductPage(){
         setTimeout(()=>{
             setLoading(false)
         } ,500)
+
     }, []);
+
+    const [favorites, setFavorites] = useState([]);
+
+    // Load favorites from cookies on component mount
+    useEffect(() => {
+        const savedFavorites = Cookies.get("favorites");
+        if (savedFavorites) {
+            setFavorites(JSON.parse(savedFavorites));
+        }
+    }, []);
+
+    // Check if product is in favorites
+    const isFavorite = favorites.some(item => item.productCode === product.productCode);
+
+    // Toggle favorite (Add or Remove)
+    const toggleFavorite = () => {
+        let updatedFavorites;
+
+        if (isFavorite) {
+            // Remove product from favorites
+            updatedFavorites = favorites.filter(item => item.productCode !== product.productCode);
+        } else {
+            // Add product to favorites
+            updatedFavorites = [...favorites, { productCode: product.productCode, type: "Inter", peaces: 1 }];
+        }
+
+        // Update state and save in cookies
+        setFavorites(updatedFavorites);
+        Cookies.set("favorites", JSON.stringify(updatedFavorites), { expires: 365 });
+    };
+
 
     return(
         product !== null &&
         <div className="ProductPageContainer">
             <div className="mainInfoCont">
                 <div className="textInfo">
-                    <p className="name">{product.name}</p>
+                    <div className="nameCont">
+                        <p className="name">{product.name}</p>
+
+                        <button className="starBtn" onClick={()=>toggleFavorite()}>
+                            {isFavorite ?
+                                <FaStar className="starIcon"/> :
+                                <FaRegStar className="starIcon"/>
+                            }
+                        </button>
+
+                    </div>
                     <p className="prg">{product.description}</p>
 
                     <div className="imageContainer tabletV">

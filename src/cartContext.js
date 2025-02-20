@@ -11,7 +11,6 @@ export const CartProvider = ({children}) => {
 
     useEffect(() => {
         const state = Cookies.get('Type')
-        console.log(state)
         if (state){
             setActiveType(state)
         }

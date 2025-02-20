@@ -40,17 +40,48 @@
       flex-grow: 1;
       margin-right: 30px;
 
-      .name{
-        font-family: 'Raleway', sans-serif;
-        font-weight: 800;
-        font-size: 40px;
-        color:  #055659;
+      .nameCont{
         margin-bottom: 24px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+
         @include screen($tablet){
-          font-size: 32px;
           margin-bottom: 16px;
         }
+
+        .starBtn{
+          border: none;
+          cursor: pointer;
+          background-color: transparent;
+          outline: none;
+          .starIcon{
+            font-size: 40px;
+            fill: #f8cd46;
+            transition: 0.2s ease-in-out;
+            &:hover{
+              scale: 1.1;
+            }
+          }
+        }
+
+
+
+        .name{
+          font-family: 'Raleway', sans-serif;
+          font-weight: 800;
+          font-size: 40px;
+          color:  #055659;
+          @include screen($tablet){
+            font-size: 32px;
+          }
+        }
+
+
       }
+
+
       .prg{
         font-size: 20px;
         font-family: 'Raleway', sans-serif;
