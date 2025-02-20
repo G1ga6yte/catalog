@@ -3,6 +3,7 @@ import './Favorites.scss';
 import Cookies from "js-cookie";
 import {InterProducts} from "../../products/inter";
 import {useCartContext} from "../../cartContext";
+import {MasterProducts} from "../../products/master";
 
 function Favorites() {
     const {setLoading} = useCartContext()
@@ -33,6 +34,12 @@ function Favorites() {
             parsedFavorites.forEach((item) => {
                 if (item.type === "Inter") {
                     let product = InterProducts.find((product) => product.productCode === item.productCode);
+                    if (product) {
+                        newFavorites.push({ ...product, peaces: 1, type: item.type }); // Make sure to create a new object
+                    }
+                }
+                if (item.type === "Master") {
+                    let product = MasterProducts.find((product) => product.productCode === item.productCode);
                     if (product) {
                         newFavorites.push({ ...product, peaces: 1, type: item.type }); // Make sure to create a new object
                     }

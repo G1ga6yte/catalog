@@ -46,7 +46,7 @@ function ProductPage(){
         } else {
             // Add product to favorites
             setIsFavorite(true)
-            updatedFavorites = [...favorites, { productCode: product.productCode, type: "Inter", peaces: 1 }];
+            updatedFavorites = [...favorites, { productCode: product.productCode, type: activeType, peaces: 1 }];
         }
 
         // Update state and save in cookies
