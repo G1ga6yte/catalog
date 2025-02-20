@@ -77,4 +77,24 @@
     }
   }
 
+  .sendBtn{
+    padding: 8px 20px;
+    border-radius: 32px;
+    border: 1px solid #055659;
+    background-color: transparent;
+    color: #055659;
+    font-family: 'Raleway', sans-serif;
+    font-size: 16px;
+    line-height: 20px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: 0.2s ease-in-out;
+
+    &:hover{
+      background-color: #055659;
+      color: white;
+    }
+  }
+
 }

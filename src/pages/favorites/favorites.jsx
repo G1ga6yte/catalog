@@ -4,11 +4,13 @@ import Cookies from "js-cookie";
 import {InterProducts} from "../../products/inter";
 import {useCartContext} from "../../cartContext";
 import {MasterProducts} from "../../products/master";
+import emailjs from 'emailjs-com';
 
 function Favorites() {
     const {setLoading} = useCartContext()
     const [favorites, setFavorites] = useState([]);
     const [sum, setSum] = useState(0);
+
     const HandleChange = (newFavorites) => {
         let summa = 0
         newFavorites.forEach((item, index) => {
@@ -26,7 +28,6 @@ function Favorites() {
 
         if (favoritesCookie) {
             const parsedFavorites = JSON.parse(favoritesCookie);
-            console.log(parsedFavorites);
 
             // Collect all products in an array before updating state
             let newFavorites = [];
@@ -47,12 +48,33 @@ function Favorites() {
             });
 
             // Update state once
+            console.log(newFavorites)
             setFavorites(newFavorites);
             HandleChange(newFavorites)
 
         }
     }, []);
 
+    const handleSendEmail = () => {
+        const products = favorites.map(item => item.name).join(', ');
+
+        const templateParams = {
+            user_email: "sargsyan.vache.02@gmail.com",
+            products: products,
+            from_name: "Vache",
+            to_name: "Armen Aghababyan",
+            message: products
+        };
+
+        emailjs.send('service_u0154kq', 'template_08vv9p9', templateParams, 'yUg1XedfmXIGU1mtY')
+            .then((response) => {
+                console.log('Email successfully sent!', response.status, response.text);
+                alert('Email sent successfully!');
+            }, (err) => {
+                console.error('Failed to send email. Error:', err);
+            });
+
+    }
 
 
 
@@ -72,7 +94,6 @@ function Favorites() {
                             <th>Итог</th>
                         </tr>
                         {favorites.map((item, index) => {
-                            console.log(item)
                             return (
                                 <tr key={index}>
                                     <td><img className="itemImg" src={item.image} alt=""/></td>
@@ -97,6 +118,8 @@ function Favorites() {
                     <p className="prg">Здесь пока что пусто. <br/> Нажмите на звездочку что бы добовить в Избранные!</p>
                 </div>
             }
+
+            <button onClick={handleSendEmail} className="sendBtn">Отправить заказ</button>
         </div>
     );
 }
