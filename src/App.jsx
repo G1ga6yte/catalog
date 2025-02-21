@@ -7,12 +7,16 @@ import Loading from "./pages/loading/loading";
 import {useCartContext} from "./cartContext";
 import ProductPage from "./pages/productPage/productPage";
 import Favorites from "./pages/favorites/favorites";
+import LoginCont from "./pages/loginCont/loginCont";
 
 function App() {
-    const {loading} = useCartContext()
+    const {loading, authenticated, loginCont} = useCartContext()
   return (
     <div className="App">
         <NavBar/>
+
+        {loginCont && <LoginCont/>}
+
 
         {loading && <Loading/>}
 

@@ -6,7 +6,7 @@ import Cookies from "js-cookie";
 import {FaRegStar, FaStar} from "react-icons/fa";
 
 function ProductPage() {
-    const {product, setLoading, activeType} = useCartContext()
+    const {product, setLoading, activeType, setActiveType} = useCartContext()
     const navigate = useNavigate();
     const [favorites, setFavorites] = useState([]);
     useEffect(() => {
@@ -33,7 +33,7 @@ function ProductPage() {
     // Check if product is in favorites
 
     // Toggle favorite (Add or Remove)
-    const toggleFavorite = (article) => {
+    const toggleFavorite = (article, color, volume) => {
         let updatedFavorites;
         const isFavorite = favorites.some(item => item.article === article);
 
@@ -42,13 +42,20 @@ function ProductPage() {
             updatedFavorites = favorites.filter(item => item.article !== article);
         } else {
             // Add product to favorites
-            updatedFavorites = [...favorites, {productCode: product.productCode, article: article, type: activeType, peaces: 1}];
+            updatedFavorites = [...favorites, {productCode: product.productCode, image: product.image, article: article, type: activeType, peaces: 1, color: color, volume: volume, name: product.name, price: product.price, newPrice: product.newPrice}];
         }
 
         // Update state and save in cookies
         setFavorites(updatedFavorites);
         Cookies.set("favorites", JSON.stringify(updatedFavorites), {expires: 365});
     };
+
+    const handleChangeRoute = (type, route) => {
+        setLoading(true)
+        setActiveType(type)
+        navigate(route)
+        Cookies.set('Type', type, { expires: 365 });
+    }
 
 
     return (
@@ -59,8 +66,10 @@ function ProductPage() {
                     <div className="nameCont">
                         <p className="name">{product.name}</p>
 
-
-
+                        <button onClick={()=>handleChangeRoute("Inter", "/favorites")} className="favoriteBtn">
+                            <FaStar  className="favoriteIcon"/>
+                            Фавориты
+                        </button>
                     </div>
                     <p className="prg">{product.description}</p>
 
@@ -87,13 +96,13 @@ function ProductPage() {
 
 
                                     return (
-                                        <tr className="infoLine">
+                                        <tr key={index} className="infoLine">
                                             {item.color && <td>{item.color}</td>}
                                             {item.article && <td>{item.article}</td>}
                                             {item.volume && <td>{item.volume}</td>}
                                             {item.peacesInBox && <td>{item.peacesInBox}</td>}
                                             <td>
-                                                <button className="starBtn" onClick={() => toggleFavorite(item.article)}>
+                                                <button className="starBtn" onClick={() => toggleFavorite(item.article, item.color, item.volume)}>
                                                     {isFavorite ?
                                                         <FaStar className="starIcon"/> :
                                                         <FaRegStar className="starIcon"/>

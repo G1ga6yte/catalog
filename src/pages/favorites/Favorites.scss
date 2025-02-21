@@ -1,15 +1,16 @@
 @import "../../source/mixin.scss";
-.FavoritesContainer{
-    max-width: 1200px;
+
+.FavoritesContainer {
+  max-width: 1200px;
   padding: 120px 0 0;
   margin: 0 auto;
   width: 100%;
   min-height: 100vh;
-  @include screen($tablet){
+  @include screen($tablet) {
     padding: 80px 0;
   }
 
-  .prgCont{
+  .prgCont {
     height: Calc(100vh - 120px);
     width: 100%;
 
@@ -17,7 +18,7 @@
     justify-content: center;
     align-items: center;
 
-    .prg{
+    .prg {
       margin-bottom: 100px;
       font-size: 20px;
       font-family: 'Raleway', sans-serif;
@@ -27,74 +28,165 @@
     }
   }
 
-  .itemImg{
+  .itemImg {
     height: 50px;
   }
 
-  .table{
+  .table {
     width: 100%;
     background-color: #e3e3e3;
     max-width: 100%;
-    @include screen($tablet){
+    @include screen($tablet) {
       width: 98%;
       margin: 0 auto;
     }
-    .firstTH{
+
+    .firstTH {
       width: 100px;
-      @include screen($tablet){
+      @include screen($tablet) {
         width: 70px;
       }
     }
-    tr{
+
+    tr {
       width: 100%;
     }
-    th{
+
+    th {
       background-color: white;
       padding: 8px;
       font-size: 15px;
-      font-family:  sans-serif;
+      font-family: sans-serif;
       font-weight: 600;
-      @include screen($tablet){
+      @include screen($tablet) {
         padding: 6px;
-        font-size: 14px;
-      }
-    }
-    td{
-      background-color: white;
-      text-align: center;
-      padding: 6px;
-      font-size: 14px;
-      font-family:  sans-serif;
-      font-weight: 500;
-      @include screen($tablet){
         font-size: 13px;
       }
     }
-    .endLine{
-      td{
+
+    td {
+      background-color: white;
+      text-align: center;
+      padding: 3px;
+      font-size: 14px;
+      font-family: sans-serif;
+      font-weight: 500;
+      @include screen($tablet) {
+        font-size: 13px;
+      }
+    }
+
+    .endLine {
+      td {
         padding: 10px;
+      }
+    }
+
+    .inputTD {
+      padding: 0 !important;
+      max-width: 60px;
+
+      .peacesInput {
+        padding: 16px;
+        width: 100%;
+        text-align: center;
+        font-size: 15px;
+        line-height: 20px;
+        border: none;
+        outline: none;
+        min-width: 60px;
+
+      }
+
+    }
+    .removeTD{
+      max-width: 60px;
+      width: 60px;
+      .removeBtn{
+        padding: 20px 0;
+        width: 100%;
+        cursor: pointer;
+        height: 100%;
+        background-color: transparent;
+        border: none;
+        outline: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        .removeIcon{
+          font-size: 24px;
+          color: #055659;
+        }
       }
     }
   }
 
-  .sendBtn{
-    padding: 8px 20px;
-    border-radius: 32px;
-    border: 1px solid #055659;
-    background-color: transparent;
-    color: #055659;
-    font-family: 'Raleway', sans-serif;
-    font-size: 16px;
-    line-height: 20px;
-    font-weight: 600;
-    cursor: pointer;
-    margin-top: 20px;
-    transition: 0.2s ease-in-out;
+  .buttonsCont {
+    width: 90%;
+    display: flex;
+    justify-content: end;
+    margin: 0 auto 100px;
+    gap: 12px;
 
-    &:hover{
-      background-color: #055659;
-      color: white;
+    .clearBtn{
+      background-color: #055659 !important;
+      color: white !important;
+      transition: 0.2s ease-in-out;
+      &:hover{
+        filter: brightness(1.1);
+      }
     }
+
+    .loadingIcon{
+      animation: spin 1s linear infinite;
+      font-size: 20px;
+      stroke: #055659;
+    }
+
+    .sendBtn {
+      min-width: 150px;
+      padding: 8px 20px;
+      border-radius: 32px;
+      border: 1px solid #055659;
+      background-color: transparent;
+      color: #055659;
+      font-family: 'Raleway', sans-serif;
+      font-size: 16px;
+      line-height: 20px;
+      font-weight: 600;
+      cursor: pointer;
+      margin-top: 20px;
+      transition: 0.2s ease-in-out;
+
+      &:disabled{
+        opacity: 0.3;
+        cursor: none;
+      }
+
+      &:hover {
+        background-color: #055659;
+        color: white;
+      }
+    }
+
   }
 
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    margin: 0;
+  }
+
+
 }
+
+@keyframes spin {
+  0%{
+    transform: rotate(0deg);
+  }
+  100%{
+    transform: rotate(360deg);
+  }
+}
+

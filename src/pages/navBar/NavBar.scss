@@ -32,6 +32,77 @@
   }
 
 
+  .rightLinks{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-top: -15px;
+    @include screen($tablet){
+      margin-top: -5px;
+    }
+
+    .loginBtn{
+      padding: 8px;
+      font-size: 16px;
+      color: white;
+      font-family: 'Raleway', sans-serif;
+      border: none;
+      outline: none;
+      background-color: transparent;
+      font-weight: 500;
+    }
+
+
+    .accountLogo{
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      .username{
+        font-size: 16px;
+        font-weight: 600;
+        color: white;
+        font-family: 'Raleway', sans-serif;
+        @include screen($tablet){
+          display: none;
+        }
+      }
+
+      .userIcon{
+        font-size: 24px;
+        fill: white;
+
+        @include screen($tablet){
+          display: block;
+        }
+      }
+    }
+
+    .exitBtn{
+      cursor: pointer;
+      background-color: transparent;
+      border: none;
+      outline: none;
+      padding: 4px 8px;
+      margin-top: 5px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      .exitIcon{
+        fill: white;
+        font-size: 26px;
+      }
+      .exitText{
+        font-size: 16px;
+        font-weight: 600;
+        color: white;
+        font-family: 'Raleway', sans-serif;
+        @include screen($tablet){
+          display: none;
+        }
+      }
+    }
+
+  }
   .phoneLink{
     color: white;
     font-family: 'Raleway', sans-serif;
@@ -42,7 +113,6 @@
     justify-content: center;
     gap: 8px;
     transition: 0.2s ease-in-out;
-    margin-top: -15px;
     @include screen($mobile-l){
       font-size: 15px;
       margin-top: 0;
@@ -57,11 +127,15 @@
       }
     }
 
-    .icon{
-      font-size: 26px;
-      @include screen($mobile-l){
-        font-size: 20px;
+    span{
+      @include screen($tablet){
+        display: none;
       }
+    }
+
+    .icon{
+      font-size: 28px;
+
     }
   }
 

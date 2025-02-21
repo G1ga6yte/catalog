@@ -6,6 +6,8 @@ import {Products} from "../../products/products.js";
 import { FaBookmark } from "react-icons/fa6";
 import {useNavigate} from "react-router";
 import {InterProducts} from "../../products/inter";
+import {FaStar} from "react-icons/fa";
+import Cookies from "js-cookie";
 
 function ProductsCont() {
     const {loading, setLoading, activeType, setProduct, setActiveType} = useCartContext()
@@ -48,8 +50,21 @@ function ProductsCont() {
         setProduct(product)
     }
 
+    const handleChangeRoute = (type, route) => {
+        setLoading(true)
+        setActiveType(type)
+        navigate(route)
+        Cookies.set('Type', type, { expires: 365 });
+    }
+
     return (
         <div className='ProductsContainer'>
+            <div className="headContainer">
+                <button onClick={()=>handleChangeRoute(activeType, "/favorites")} className="favoriteBtn">
+                    <FaStar  className="favoriteIcon"/>
+                    Фавориты
+                </button>
+            </div>
             <div className="cont">
 
                 <div className="desktopType">

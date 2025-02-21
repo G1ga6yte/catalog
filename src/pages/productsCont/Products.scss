@@ -12,6 +12,42 @@
 
   .cont {
     width: 100%;
+  }
+
+  .headContainer{
+    width: 100%;
+    display: flex;
+    justify-content: end;
+    margin-bottom: 20px;
+    .favoriteBtn{
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      border: 1px solid #f8cd46;
+      border-radius: 24px;
+      padding: 4px 12px;
+      font-size: 18px;
+      color: #f8cd46;
+      font-family: 'Raleway', sans-serif;
+      font-weight: 500;
+      cursor: pointer;
+      transition: 0.3s ease-in-out;
+      background-color: white;
+
+      &:hover{
+        background-color: #f8cd46;
+        color: white;
+        .favoriteIcon{
+          fill: white;
+        }
+      }
+
+      .favoriteIcon{
+        transition: 0.3s ease-in-out;
+        fill: #f8cd46;
+        font-size: 18px;
+      }
+    }
 
   }
 
