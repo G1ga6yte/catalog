@@ -35,7 +35,7 @@ function NavBar() {
 
                     {!accountInfo &&
                         <button onClick={()=>setLoginCont(true)} className="loginBtn">
-                            Login
+                            Логин
                         </button>
                     }
 

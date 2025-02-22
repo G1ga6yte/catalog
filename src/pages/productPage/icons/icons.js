@@ -8,9 +8,11 @@ import img7 from "./img7.webp"
 import img8 from "./img8.webp"
 import img9 from "./img9.webp"
 import img10 from "./img10.webp"
+import img11 from "./szlifowanie-reczne.webp"
 
 
 
 export const Icons = {
-    img1, img2, img3, img4, img5, img6, img7, img8, img9, img10
+    img1, img2, img3, img4, img5, img6, img7, img8, img9, img10,
+    img11
 }

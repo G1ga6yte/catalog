@@ -1,11 +1,11 @@
 export const Users = [
     {
-        name: "Vache",
-        email: "",
+        name: "Vache Sargsyan",
+        email: "gigabyte10tb@gmail.com",
         username: "Admin",
         password: "$2b$10$yaFVSCcCIqBwh33HviVfGuXQrw/nRsDXRs9ujgEgOK1bKkPMaeRD.",
-        address: "",
-        tel: ""
+        address: "Kotayqi marz, Getargel 6, 12/1",
+        tel: "+374 33 003114"
     },
     {
         name: "Armen",

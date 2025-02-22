@@ -8,6 +8,7 @@ import {useCartContext} from "./cartContext";
 import ProductPage from "./pages/productPage/productPage";
 import Favorites from "./pages/favorites/favorites";
 import LoginCont from "./pages/loginCont/loginCont";
+import History from "./pages/history/history";
 
 function App() {
     const {loading, authenticated, loginCont} = useCartContext()
@@ -25,6 +26,7 @@ function App() {
           <Route path="/products" element={<ProductsCont/>}/>
           <Route path="/product/:id" element={<ProductPage/>}/>
           <Route path="/favorites" element={<Favorites/>}/>
+          <Route path="/history" element={<History/>}/>
       </Routes>
     </div>
   );

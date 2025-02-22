@@ -225,7 +225,8 @@
     .typesCont{
       display: flex;
       flex-wrap: wrap;
-      justify-content: space-between;
+      justify-content: start;
+      gap: 5px;
       align-items: start;
       @include screen($tablet){
         gap: 1%;

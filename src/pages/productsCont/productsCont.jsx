@@ -85,6 +85,9 @@ function ProductsCont() {
                                     }
 
                                     <div className="imgBlock">
+                                        {/*<button className="addBtn" onClick={()=>{}}>*/}
+                                        {/*    <FaStar className="favoriteIcon"/>*/}
+                                        {/*</button>*/}
                                         <img className="img" src={product.image} alt=""/>
                                     </div>
 
