@@ -42,7 +42,7 @@ function ProductPage() {
             updatedFavorites = favorites.filter(item => item.article !== article);
         } else {
             // Add product to favorites
-            updatedFavorites = [...favorites, {productCode: product.productCode, image: product.image, article: article, type: activeType, peaces: 1, color: color, volume: volume, name: product.name, price: product.price, newPrice: product.newPrice}];
+            updatedFavorites = [...favorites, {productCode: product.productCode, image: product.image, article: article, type: activeType, peaces: 1, color: color, volume: volume, name: product.name, price: product.price, newPrice: product.newPrice, sellingPrice: product.sellingPrice}];
         }
 
         // Update state and save in cookies

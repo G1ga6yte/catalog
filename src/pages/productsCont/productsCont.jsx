@@ -6,28 +6,60 @@ import {Products} from "../../products/products.js";
 import { FaBookmark } from "react-icons/fa6";
 import {useNavigate} from "react-router";
 import {InterProducts} from "../../products/inter";
-import {FaStar} from "react-icons/fa";
+import {FaRegStar, FaStar} from "react-icons/fa";
 import Cookies from "js-cookie";
 
 function ProductsCont() {
-    const {loading, setLoading, activeType, setProduct, setActiveType} = useCartContext()
+    const {loading, setLoading, activeType, setProduct, setActiveType, authenticated} = useCartContext()
     const [activeProducts, setActiveProducts] = useState([])
     const navigate = useNavigate()
+    const [favorites, setFavorites] = useState([])
 
-    // useEffect(() => {
-    //     setActiveProducts([])
-    //     Products.forEach((product, index) => {
-    //         if (product.mark === activeType) {
-    //             setActiveProducts(activeProducts => [...activeProducts, product])
-    //         }
-    //         if (index === activeProducts.length - 1) {
-    //             setLoading(false)
-    //         }
-    //     })
-    //     setLoading(false)
-    //
-    //
-    // }, [])
+    const toggleFavorite = (product) => {
+        let updatedFavorites = [...favorites]; // Make a copy of the current favorites
+        let status = true;
+
+        // Check if all items in product.info are already in favorites
+        product.info.forEach(item => {
+            const isFav = favorites.some(fav => fav.article === item.article);
+            if (!isFav) {
+                status = false;
+            }
+        });
+
+        if (status) {
+            // If all items are favorites, remove them from favorites
+            product.info.forEach(item => {
+                updatedFavorites = updatedFavorites.filter(el => el.article !== item.article);
+            });
+        } else {
+            // If not all items are favorites, add them to favorites
+            product.info.forEach(item => {
+                const isFav = favorites.some(fav => fav.article === item.article);
+                if (!isFav) {
+                    updatedFavorites.push({
+                        productCode: product.productCode,
+                        image: item.image,
+                        article: item.article,
+                        type: activeType,
+                        peaces: 1,
+                        color: item.color,
+                        volume: item.volume,
+                        name: product.name,
+                        price: product.price,
+                        newPrice: product.newPrice,
+                        sellingPrice: product.sellingPrice
+                    });
+                }
+            });
+        }
+
+        // Update state once after processing the entire list
+        setFavorites(updatedFavorites);
+
+        // Save to localStorage after state update
+        localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
+    };
 
 
     useEffect(() => {
@@ -37,9 +69,15 @@ function ProductsCont() {
         if (activeType === "Inter"){
             setActiveProducts(InterProducts)
         }
+
         setTimeout(()=>{
             setLoading(false)
         }, 500)
+
+        let favCookie = localStorage.getItem("favorites");
+        if (favCookie) {
+            setFavorites(JSON.parse(favCookie));
+        }
 
 
     }, [activeType, setActiveType]);
@@ -57,6 +95,8 @@ function ProductsCont() {
         Cookies.set('Type', type, { expires: 365 });
     }
 
+
+
     return (
         <div className='ProductsContainer'>
             <div className="headContainer">
@@ -69,8 +109,15 @@ function ProductsCont() {
 
                 <div className="desktopType">
                     {activeProducts.map((product, index) => {
-                        let sale =Math.floor((Number(product.price)-Number(product.newPrice))/(Number(product.price)/100) )
-                            return (
+                            let sale =Math.floor((Number(product.price)-Number(product.newPrice))/(Number(product.price)/100) )
+                            let active = true;
+                            product.info.forEach((item, index) => {
+                                const isFavorite = favorites.some(prod => prod.article === item.article);
+                                if (!isFavorite){
+                                    active = false
+                                }
+                            })
+                        return (
                                 <div onClick={()=>handleGoToProduct(product)} key={index} className="productCard">
 
                                     {product.newPrice.length > 0 && <div className="saleMark">
@@ -85,9 +132,17 @@ function ProductsCont() {
                                     }
 
                                     <div className="imgBlock">
-                                        {/*<button className="addBtn" onClick={()=>{}}>*/}
-                                        {/*    <FaStar className="favoriteIcon"/>*/}
-                                        {/*</button>*/}
+                                        <button className="addBtn" onClick={(e)=>{
+                                            e.stopPropagation()
+                                            toggleFavorite(product)
+                                        }}>
+                                            {active ?
+                                                <FaStar className="favoriteIcon"/>
+                                                :
+                                                <FaRegStar className="favoriteIcon"/>
+                                            }
+
+                                        </button>
                                         <img className="img" src={product.image} alt=""/>
                                     </div>
 
@@ -96,13 +151,22 @@ function ProductsCont() {
                                             <p className="name">{product.name}</p>
                                         </div>
 
-                                        <div className="priceCont">
-                                            {product.newPrice.length > 0 ?
-                                                <p className="newPrice">{product.newPrice}.00 <span>AMD</span></p> :
-                                                <p className="price">{product.price}.00 <span>AMD</span></p>
-                                            }
-                                            {product.newPrice.length > 0 && <p className="oldPrice">{product.price}.00 </p>}
-                                        </div>
+
+
+                                        {authenticated ?
+                                            <div className="priceCont">
+                                                {product.newPrice.length > 0 ?
+                                                    <p className="newPrice">{product.newPrice}.00 <span>AMD</span></p> :
+                                                    <p className="price">{product.price}.00 <span>AMD</span></p>
+                                                }
+                                                {product.newPrice.length > 0 && <p className="oldPrice">{product.price}.00 </p>}
+                                            </div>
+                                            :
+                                            <div className="priceCont">
+                                                {product.sellingPrice.length && <p className="price">{product.sellingPrice}.00 <span>AMD</span></p>}
+                                            </div>
+                                        }
+
 
                                     </div>
 
@@ -111,10 +175,13 @@ function ProductsCont() {
 
                                     </div>
 
-                                    <div className="textBlock marginB6">
-                                        <span className="miniHeader">Цена продажи:</span>
-                                        <span className="sellingPrice">{product.sellingPrice}.00 <span>AMD</span></span>
-                                    </div>
+                                    {authenticated &&
+                                        <div className="textBlock marginB6">
+                                            <span className="miniHeader">Цена продажи:</span>
+                                            <span className="sellingPrice">{product.sellingPrice}.00 <span>AMD</span></span>
+                                        </div>
+                                    }
+
 
                                     {product.colors ?
                                         <div className="colorsCont">
@@ -142,7 +209,13 @@ function ProductsCont() {
                         {activeProducts.map((product, index) => {
                             if (index % 2 === 0) {
                                 let sale =Math.floor((Number(product.price)-Number(product.newPrice))/(Number(product.price)/100) )
-
+                                let active = true;
+                                product.info.forEach((item, index) => {
+                                    const isFavorite = favorites.some(prod => prod.article === item.article);
+                                    if (!isFavorite){
+                                        active = false
+                                    }
+                                })
                                 return (
                                     <div  onClick={()=>handleGoToProduct(product)} key={index} className="productCard">
 
@@ -158,8 +231,18 @@ function ProductsCont() {
                                         }
 
                                         <div className="imgBlock">
-                                            <img className="img" src={product.image} alt=""/>
+                                            <button className="addBtn" onClick={(e)=>{
+                                                e.stopPropagation()
+                                                toggleFavorite(product)
+                                            }}>
+                                                {active ?
+                                                    <FaStar className="favoriteIcon"/>
+                                                    :
+                                                    <FaRegStar className="favoriteIcon"/>
+                                                }
 
+                                            </button>
+                                            <img className="img" src={product.image} alt=""/>
                                         </div>
 
                                         <div className="textBlock marginB12">
@@ -167,14 +250,19 @@ function ProductsCont() {
                                                 <p className="name">{product.name}</p>
                                                 <p className="prg">{product.description}</p>
 
-                                                <div className="mobilePriceCont priceCont">
-                                                    {product.newPrice.length > 0 ?
-                                                        <p className="newPrice">{product.newPrice}.00 <span>AMD</span></p> :
-                                                        <p className="price">{product.price}.00 <span>AMD</span></p>
-                                                    }
-                                                    {product.newPrice.length > 0 && <p className="oldPrice">{product.price}.00 </p>}
-
-                                                </div>
+                                                {authenticated ?
+                                                    <div className="mobilePriceCont priceCont">
+                                                        {product.newPrice.length > 0 ?
+                                                            <p className="newPrice">{product.newPrice}.00 <span>AMD</span></p> :
+                                                            <p className="price">{product.price}.00 <span>AMD</span></p>
+                                                        }
+                                                        {product.newPrice.length > 0 && <p className="oldPrice">{product.price}.00 </p>}
+                                                    </div>
+                                                    :
+                                                    <div className="mobilePriceCont priceCont">
+                                                        {product.sellingPrice.length && <p className="price">{product.sellingPrice}.00 <span>AMD</span></p>}
+                                                    </div>
+                                                }
 
                                             </div>
 
@@ -188,10 +276,12 @@ function ProductsCont() {
 
                                         </div>
 
-                                        <div className="textBlock marginB6">
-                                            <span className="miniHeader">Цена продажи:</span>
-                                            <span className="sellingPrice">{product.sellingPrice}.00 <span>AMD</span></span>
-                                        </div>
+                                        {authenticated &&
+                                            <div className="textBlock marginB6">
+                                                <span className="miniHeader">Цена продажи:</span>
+                                                <span className="sellingPrice">{product.sellingPrice}.00 <span>AMD</span></span>
+                                            </div>
+                                        }
 
                                         {product.colors ?
                                             <div className="colorsCont">
@@ -218,7 +308,13 @@ function ProductsCont() {
                         {activeProducts.map((product, index) => {
                             if (index % 2 === 1) {
                                 let sale =Math.floor((Number(product.price)-Number(product.newPrice))/(Number(product.price)/100) )
-
+                                let active = true;
+                                product.info.forEach((item, index) => {
+                                    const isFavorite = favorites.some(prod => prod.article === item.article);
+                                    if (!isFavorite){
+                                        active = false
+                                    }
+                                })
                                 return (
                                     <div  onClick={()=>handleGoToProduct(product)} key={index} className="productCard">
 
@@ -233,8 +329,18 @@ function ProductsCont() {
                                             </div> : ""
                                         }
                                         <div className="imgBlock">
-                                            <img className="img" src={product.image} alt=""/>
+                                            <button className="addBtn" onClick={(e)=>{
+                                                e.stopPropagation()
+                                                toggleFavorite(product)
+                                            }}>
+                                                {active ?
+                                                    <FaStar className="favoriteIcon"/>
+                                                    :
+                                                    <FaRegStar className="favoriteIcon"/>
+                                                }
 
+                                            </button>
+                                            <img className="img" src={product.image} alt=""/>
                                         </div>
 
                                         <div className="textBlock marginB12">
@@ -242,14 +348,19 @@ function ProductsCont() {
                                                 <p className="name">{product.name}</p>
                                                 <p className="prg">{product.description}</p>
 
-                                                <div className="mobilePriceCont priceCont">
-                                                    {product.newPrice.length > 0 ?
-                                                        <p className="newPrice">{product.newPrice}.00 <span>AMD</span></p> :
-                                                        <p className="price">{product.price}.00 <span>AMD</span></p>
-                                                    }
-                                                    {product.newPrice.length > 0 && <p className="oldPrice">{product.price}.00 </p>}
-
-                                                </div>
+                                                {authenticated ?
+                                                    <div className="mobilePriceCont priceCont">
+                                                        {product.newPrice.length > 0 ?
+                                                            <p className="newPrice">{product.newPrice}.00 <span>AMD</span></p> :
+                                                            <p className="price">{product.price}.00 <span>AMD</span></p>
+                                                        }
+                                                        {product.newPrice.length > 0 && <p className="oldPrice">{product.price}.00 </p>}
+                                                    </div>
+                                                    :
+                                                    <div className="mobilePriceCont priceCont">
+                                                        {product.sellingPrice.length && <p className="price">{product.sellingPrice}.00 <span>AMD</span></p>}
+                                                    </div>
+                                                }
 
                                             </div>
 
@@ -263,10 +374,12 @@ function ProductsCont() {
 
                                         </div>
 
-                                        <div className="textBlock marginB6">
-                                            <span className="miniHeader">Цена продажи:</span>
-                                            <span className="sellingPrice">{product.sellingPrice}.00 <span>AMD</span></span>
-                                        </div>
+                                        {authenticated &&
+                                            <div className="textBlock marginB6">
+                                                <span className="miniHeader">Цена продажи:</span>
+                                                <span className="sellingPrice">{product.sellingPrice}.00 <span>AMD</span></span>
+                                            </div>
+                                        }
 
                                         {product.colors ?
                                             <div className="colorsCont">

@@ -2,16 +2,21 @@ import React, {useEffect, useState} from 'react';
 import './History.scss';
 import {useCartContext} from "../../cartContext";
 import Cookies from "js-cookie";
+import {useNavigate} from "react-router";
 
 function History() {
-    const {setLoading} = useCartContext()
+    const {setLoading, authenticated} = useCartContext()
     const [history, setHistory] = useState(null);
+    const navigate = useNavigate();
 
     useEffect(() => {
         window.scrollTo(0, 0);
         setTimeout(() => {
             setLoading(false)
         }, 500)
+        if (!authenticated) {
+            navigate(-1)
+        }
 
         const historyCookie = localStorage.getItem("history")
         if (historyCookie) {

@@ -25,7 +25,10 @@ function NavBar() {
 
                 <div className="rightLinks">
                     <a className="phoneLink" href="tel:+37499207090"> <IoIosCall className="icon" />
-                        <span>Свяжитесь с нами</span></a>
+                        {/*<span>Свяжитесь с нами</span>*/}
+                        <span className="desktopNumber">+374 99 207090</span>
+                    </a>
+
                     {accountInfo &&
                         <div className="accountLogo">
                             <FaRegUserCircle className="userIcon" />

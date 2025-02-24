@@ -15,6 +15,7 @@ function Favorites() {
     const {setLoading, authenticated, setLoginCont, accountInfo} = useCartContext()
     const [favorites, setFavorites] = useState([]);
     const [sum, setSum] = useState(0);
+    const [sellingSum, setSellingSum] = useState(0);
     const [btnLoading, setBtnLoading] = useState(false);
     const navigate = useNavigate();
     const [sendDialog, setSendDialog] = useState(false);
@@ -30,6 +31,8 @@ function Favorites() {
         } else {
             await localStorage.setItem("favorites", JSON.stringify([]));
         }
+
+
 
     }
 
@@ -166,6 +169,11 @@ function Favorites() {
     }
 
     useEffect(() => {
+
+
+
+
+
         if (favorites.length) {
             let summa = 0
             favorites.forEach(item => {
@@ -177,7 +185,14 @@ function Favorites() {
             })
             setSum(summa)
         }
-    }, [favorites, setFavorites]);
+        if (favorites.length) {
+            let summa = 0
+            favorites.forEach(item => {
+                    summa = summa + Number(item.sellingPrice) * Number(item.peaces);
+            })
+            setSellingSum(summa)
+        }
+    }, [favorites, setFavorites, authenticated]);
 
     const handleClear = async () => {
         await setFavorites([])
@@ -196,11 +211,14 @@ function Favorites() {
         <div className='FavoritesContainer'>
 
 
+            {authenticated &&
+                <button onClick={()=>{
+                    handleChangeRoute("/history")
+                }} className="historyBtn"><FaHistory className="historyIcon" />
+                </button>
+            }
 
-            <button onClick={()=>{
-                handleChangeRoute("/history")
-            }} className="historyBtn"><FaHistory className="historyIcon" />
-            </button>
+
 
             {okDialog && <div className="okDialogCont">
                 <div onClick={()=>setOkDialog(false)} className="backgroundBlock"></div>
@@ -237,6 +255,7 @@ function Favorites() {
             {favorites.length > 0 ?
                 <div className="tableCont">
                     <table className="table">
+                        <thead>
                         <tr className="tr">
                             <th className="numberTH">№</th>
                             <th>Артикул</th>
@@ -247,6 +266,7 @@ function Favorites() {
                             <th>Итог</th>
                             <th></th>
                         </tr>
+                        </thead>
                         {favorites.map((item, index) => {
                             return (
                                 <tr key={index}>
@@ -261,8 +281,16 @@ function Favorites() {
                                         value={String(item.peaces)}
                                         onChange={(e) => handleChangePeaces(e.target.value, item.article)}
                                     /></td>
-                                    <td>{item.newPrice.length ? Number(item.newPrice) : Number(item.price)}.00</td>
-                                    <td>{item.newPrice.length ? Number(item.newPrice) * Number(item.peaces) : Number(item.price) * Number(item.peaces)}.00</td>
+                                    {authenticated ?
+                                        <td>{item.newPrice.length ? Number(item.newPrice) : Number(item.price)}.00</td>
+                                        :
+                                        <td>{item.sellingPrice.length && item.sellingPrice}.00</td>
+                                    }
+                                    {authenticated ?
+                                        <td>{item.newPrice.length ? Number(item.newPrice) * Number(item.peaces) : Number(item.price) * Number(item.peaces)}.00</td>
+                                        :
+                                        <td>{item.sellingPrice.length && Number(item.sellingPrice)*Number(item.peaces)}.00</td>
+                                    }
                                     <td className="removeTD">
                                         <button onClick={() => {
                                             handleRemoveItem(item.article)
@@ -280,7 +308,11 @@ function Favorites() {
                             <td></td>
                             <td></td>
                             <td style={{fontWeight: 600}}>Обший итог:</td>
-                            <td style={{fontWeight: 600}}>{sum}.00</td>
+                            {authenticated ?
+                                <td style={{fontWeight: 600}}>{sum}.00</td>
+                                :
+                                <td style={{fontWeight: 600}}>{sellingSum}.00</td>
+                            }
                             <td></td>
                         </tr>
                     </table>

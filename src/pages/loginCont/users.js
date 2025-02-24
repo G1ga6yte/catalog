@@ -8,11 +8,11 @@ export const Users = [
         tel: "+374 33 003114"
     },
     {
-        name: "Armen",
-        email: "",
+        name: "Armen Aghababyan",
+        email: "armen.aghababyan.02@mail.ru",
         username: "Armen",
         password: "$2b$10$EmRNCK8/MzQLFFyRoWzk7u3xORthHjwcaKLoi6tinKvOzjb/tf/Qu",
-        address: "",
-        tel: ""
+        address: "Artashati xchuxi, 18",
+        tel: "+374 44 070870"
     }
 ]

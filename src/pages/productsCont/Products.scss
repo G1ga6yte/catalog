@@ -319,10 +319,35 @@
 
       .addBtn{
         position: absolute;
+        z-index: 2;
         top: 15px;
         right: 15px;
+        border: none;
+        outline: none;
+        background-color: transparent;
+        cursor: pointer;
+        transition: 0.3s ease-in-out;
+        @include screen($tablet){
+          top: 0;
+          right: 0;
+        }
+
+        &:hover{
+          scale: 1.1;
+        }
+
+        .favoriteIcon{
+          font-size: 32px;
+          fill: #f8cd46;
+          @include screen($tablet){
+            font-size: 26px;
+          }
+        }
+
       }
       .img{
+        position: relative;
+        z-index: 1;
         width: 100%;
         mix-blend-mode: multiply;
         background-color: white;

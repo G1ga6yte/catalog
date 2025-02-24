@@ -49,8 +49,22 @@
       border: none;
       outline: none;
       background-color: transparent;
-      font-weight: 500;
       cursor: pointer;
+      transition: 0.3s ease-in-out;
+      @include screen($tablet){
+        color: white !important;
+        .icon{
+          fill: white !important;
+        }
+      }
+      &:hover{
+        color: #f8cd46;
+
+        .icon{
+          transition: 0.2s ease-in-out;
+          fill: #f8cd46;
+        }
+      }
     }
 
 
@@ -88,17 +102,33 @@
       display: flex;
       align-items: center;
       gap: 6px;
+
+      &:hover{
+        .exitIcon{
+          fill: #f8cd46;
+        }
+        .exitText{
+          color: #f8cd46;
+        }
+      }
+
       .exitIcon{
         fill: white;
         font-size: 26px;
+        transition: 0.3s ease-in-out;
+        @include screen($tablet){
+          fill: white !important;
+        }
       }
       .exitText{
         font-size: 16px;
         font-weight: 600;
         color: white;
         font-family: 'Raleway', sans-serif;
+        transition: 0.3s ease-in-out;
         @include screen($tablet){
           display: none;
+          color: white !important;
         }
       }
     }
@@ -106,7 +136,7 @@
   }
   .phoneLink{
     color: white;
-    font-family: 'Raleway', sans-serif;
+    font-family: sans-serif;
     font-size: 18px;
     text-decoration: none;
     display: flex;
@@ -114,6 +144,12 @@
     justify-content: center;
     gap: 8px;
     transition: 0.2s ease-in-out;
+    @include screen($tablet){
+      color: white !important;
+      .icon{
+        fill: white !important;
+      }
+    }
     @include screen($mobile-l){
       font-size: 15px;
       margin-top: 0;
@@ -125,6 +161,11 @@
       .icon{
         transition: 0.2s ease-in-out;
         fill: #f8cd46;
+      }
+    }
+    .desktopNumber{
+      @include screen($tablet){
+        display: none;
       }
     }
 
