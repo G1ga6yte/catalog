@@ -13,7 +13,7 @@
   .historyBtn{
     position: fixed;
     left: 10px;
-    bottom: 20px;
+    bottom: 30px;
     z-index: 5;
     background-color: #055659;
     border: none;
@@ -209,6 +209,11 @@
     @include screen($tablet) {
       width: 98%;
       margin: 0 auto;
+    }
+
+    .numberTH{
+      max-width: 30px;
+      width: 30px;
     }
 
     .firstTH {

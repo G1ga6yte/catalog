@@ -24,7 +24,7 @@ function ProductPage() {
 
     // Load favorites from cookies on component mount
     useEffect(() => {
-        const savedFavorites = Cookies.get("favorites");
+        const savedFavorites = localStorage.getItem("favorites");
         if (savedFavorites) {
             setFavorites(JSON.parse(savedFavorites));
         }
@@ -47,14 +47,14 @@ function ProductPage() {
 
         // Update state and save in cookies
         setFavorites(updatedFavorites);
-        Cookies.set("favorites", JSON.stringify(updatedFavorites), {expires: 365});
+        localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
     };
 
     const handleChangeRoute = (type, route) => {
         setLoading(true)
         setActiveType(type)
         navigate(route)
-        Cookies.set('Type', type, { expires: 365 });
+        localStorage.setItem('Type', type);
     }
 
 

@@ -22,15 +22,27 @@ function Favorites() {
     const [okDialog, setOkDialog] = useState(false);
 
     const fetchProducts = async () => {
-        const favoritesCookie = await Cookies.get("favorites");
+        const favoritesCookie =  localStorage.getItem("favorites");
 
         if (favoritesCookie) {
             let fav = JSON.parse(favoritesCookie);
             await setFavorites(fav);
         } else {
-            await Cookies.set("favorites", JSON.stringify([]), {expires: 365});
+            await localStorage.setItem("favorites", JSON.stringify([]));
         }
 
+    }
+
+    const getDate = () => {
+        const now = new Date();
+        const year = now.getFullYear();
+        const month = String(now.getMonth() + 1).padStart(2, "0"); // Month is 0-based
+        const day = String(now.getDate()).padStart(2, "0");
+        const hours = String(now.getHours()).padStart(2, "0"); // 24-hour format
+        const minutes = String(now.getMinutes()).padStart(2, "0");
+        const seconds = String(now.getSeconds()).padStart(2, "0");
+
+        return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
     }
 
     useEffect(() => {
@@ -48,55 +60,67 @@ function Favorites() {
         if (authenticated) {
             setSendDialog(false)
 
-            const tableRows = favorites.map(product => `
-            <tr>
-                <td style="border: 1px solid black; text-align: center; padding: 5px">${product.article} <br> (${product.volume}) <br> (${product.color})</td>
-                <td style="border: 1px solid black; text-align: center; padding: 5px">${product.name}</td>
-                <td style="border: 1px solid black; text-align: center; padding: 5px">${product.peaces}</td>
-                <td style="border: 1px solid black; text-align: center; padding: 5px">${product.newPrice.length ? product.newPrice : product.price}</td>
-                <td style="border: 1px solid black; text-align: center; padding: 5px">${product.newPrice.length ? Number(product.newPrice) * Number(product.peaces) : Number(product.price) * Number(product.peaces)}</td>
-            </tr>`).join(' ');
+                const newFavorites = favorites.map(product => {
+                    if(product.newPrice.length){
+                        product.price = product.newPrice
+                    }
+                    product.total = Number(product.price)*Number(product.peaces)
 
-            const newFavorites = favorites.map(product => {
-                if(product.newPrice.length){
-                    product.price = product.newPrice
-                }
-                product.total = Number(product.price)*Number(product.peaces)
-
-                return product
-            })
+                    return product
+                })
 
 
-            // Send this tableRows as a parameter to EmailJS
-            const templateParams = {
-                user_email: accountInfo.email,
-                products: {
-                    productsTable: newFavorites,  // This is raw HTML
-                    fullPrice: sum
-                },
-                from_name: accountInfo.name,
-                account: {
-                    name: accountInfo.name,
-                    email: accountInfo.email,
-                    address: accountInfo.address,
-                    tel: accountInfo.tel
-                }
-            };
+                const templateParams = {
+                    user_email: accountInfo.email,
+                    products: {
+                        fullPrice: sum
+                    },
+                    from_name: accountInfo.name,
+                    account: {
+                        name: accountInfo.name,
+                        email: accountInfo.email,
+                        address: accountInfo.address,
+                        tel: accountInfo.tel
+                    },
+                    favorites: {}
+                };
 
-            emailjs.send('service_u0154kq', 'template_08vv9p9', templateParams, 'yUg1XedfmXIGU1mtY')
-                .then((response) => {
-                    console.log('Email successfully sent!', response.status, response.text);
-                    setOkDialog(true)
-                    setTimeout(()=>{
-                        setOkDialog(false)
-                        navigate("/")
+                newFavorites.forEach((product, index) => {
+                    templateParams.favorites[`favorite${index}`] = product;
+                })
+
+                emailjs.send('service_u0154kq', 'template_08vv9p9', templateParams, 'yUg1XedfmXIGU1mtY')
+                    .then((response) => {
+                        console.log('Email successfully sent!', response.status, response.text);
+                        setOkDialog(true)
+                        const history = localStorage.getItem("history")
+                        let historyArr = []
+                        if(history){
+                            historyArr = JSON.parse(history);
+                        }
+                        if (historyArr.length > 2) {
+                            historyArr.pop()
+                        }
+                        historyArr.unshift({
+                            order: newFavorites,
+                            date: getDate(),
+                            sum: sum
+                        })
+
+
+
+                        localStorage.setItem("history", JSON.stringify(historyArr))
+
+                        setTimeout(()=>{
+                            setOkDialog(false)
+                            navigate("/")
+                            setBtnLoading(false)
+                        }, 2000)
+                    }, (err) => {
                         setBtnLoading(false)
-                    }, 2000)
-                }, (err) => {
-                    setBtnLoading(false)
-                    alert("Ошибка! Заказ не отправлен. Свяжитесь с нами!")
-                    console.error('Failed to send email. Error:', err);
-                });
+                        alert("Ошибка! Заказ не отправлен. Свяжитесь с нами!")
+                        console.error('Failed to send email. Error:', err);
+                    });
         } else {
             setLoginCont(true)
             setBtnLoading(false)
@@ -106,7 +130,7 @@ function Favorites() {
     }
 
     const handleChangePeaces = async (peaces, article) => {
-        const savedFavorites = await Cookies.get("favorites");
+        const savedFavorites = localStorage.getItem("favorites");
 
         if (savedFavorites) {
             let savedFav = await JSON.parse(savedFavorites)
@@ -118,14 +142,14 @@ function Favorites() {
                 newFav.push(item);
             });
 
-            await Cookies.set("favorites", JSON.stringify(newFav), {expires: 365});
+            await localStorage.setItem("favorites", JSON.stringify(newFav));
         }
 
         await fetchProducts()
     }
 
     const handleRemoveItem = async (article) => {
-        const savedFavorites = await Cookies.get("favorites");
+        const savedFavorites = localStorage.getItem("favorites");
 
         if (savedFavorites) {
             let savFav = await JSON.parse(savedFavorites)
@@ -135,7 +159,7 @@ function Favorites() {
                     newFav.push(item);
                 }
             })
-            await Cookies.set("favorites", JSON.stringify(newFav), {expires: 365});
+            await localStorage.setItem("favorites", JSON.stringify(newFav));
         }
 
         await fetchProducts()
@@ -157,7 +181,7 @@ function Favorites() {
 
     const handleClear = async () => {
         await setFavorites([])
-        await Cookies.set("favorites", JSON.stringify([]), {expires: 365});
+        await localStorage.setItem("favorites", JSON.stringify([]));
         setClearingDialog(false)
     }
 
@@ -165,6 +189,8 @@ function Favorites() {
         setLoading(true)
         navigate(route)
     }
+
+
 
     return (
         <div className='FavoritesContainer'>
@@ -192,7 +218,7 @@ function Favorites() {
                     <p className="prg">Вы уверены что хотите отправить заказ?</p>
                     <div className="btnsCont">
                         <button onClick={() => setSendDialog(false)} className="cancelBtn">Отмена</button>
-                        <button onClick={handleSendEmail} className="applyBtn">Отправить</button>
+                        <button onClick={()=>handleSendEmail()} className="applyBtn">Отправить</button>
                     </div>
                 </div>
             </div>}
@@ -212,6 +238,7 @@ function Favorites() {
                 <div className="tableCont">
                     <table className="table">
                         <tr className="tr">
+                            <th className="numberTH">№</th>
                             <th>Артикул</th>
                             <th className="firstTH">Продукт</th>
                             <th>Название</th>
@@ -223,6 +250,7 @@ function Favorites() {
                         {favorites.map((item, index) => {
                             return (
                                 <tr key={index}>
+                                    <td>{index+1}</td>
                                     <td>{item.article}<br/>({item.volume})<br/>({item.color})
                                     </td>
                                     <td><img className="itemImg" src={item.image} alt=""/></td>
@@ -246,6 +274,7 @@ function Favorites() {
                             )
                         })}
                         <tr className="endLine">
+                            <td></td>
                             <td></td>
                             <td></td>
                             <td></td>
