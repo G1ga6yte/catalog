@@ -588,5 +588,6 @@ export const InterProducts = [
                 }
             ]
         }
-    }
+    },
+
 ]

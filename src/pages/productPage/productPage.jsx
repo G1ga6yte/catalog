@@ -85,6 +85,7 @@ function ProductPage() {
                                 {product.info[0] &&
                                     <tr className="headersCont">
                                         {product.info[0].color && <th>цвет</th>}
+                                        {product.info[0].var && <th> </th>}
                                         {product.info[0].article && <th>номер артикула</th>}
                                         {product.info[0].volume && <th>объём</th>}
                                         {product.info[0].peacesInBox && <th>штук в коробке</th>}
@@ -98,6 +99,7 @@ function ProductPage() {
                                     return (
                                         <tr key={index} className="infoLine">
                                             {item.color && <td>{item.color}</td>}
+                                            {item.var && <td>{item.var}</td>}
                                             {item.article && <td>{item.article}</td>}
                                             {item.volume && <td>{item.volume}</td>}
                                             {item.peacesInBox && <td>{item.peacesInBox}</td>}
