@@ -4,21 +4,35 @@ import {useCartContext} from "../../cartContext";
 import {useNavigate} from "react-router";
 import Cookies from "js-cookie";
 import {FaRegStar, FaStar} from "react-icons/fa";
+import {MasterProducts} from "../../products/master";
+import {InterProducts} from "../../products/inter";
 
 function ProductPage() {
-    const {product, setLoading, activeType, setActiveType} = useCartContext()
+    const {product, setLoading, activeType, setActiveType, setProduct} = useCartContext()
     const navigate = useNavigate();
     const [favorites, setFavorites] = useState([]);
+
     useEffect(() => {
-        if (!product) {
+        let prodCode = Cookies.get("Product");
+        let type = Cookies.get("Type");
+        if (prodCode && type) {
+            let theProduct;
+            if (type === "Master") {
+                theProduct = MasterProducts.filter((el)=> el.productCode === prodCode)
+            } else if (type === "Inter") {
+                theProduct = InterProducts.filter((el)=> el.productCode === prodCode)
+            }
+            setProduct(theProduct[0])
+        } else {
             navigate("/")
-            return;
         }
+    }, []);
+
+    useEffect(() => {
         window.scrollTo(0, 0);
         setTimeout(() => {
             setLoading(false)
         }, 500)
-
     }, []);
 
 

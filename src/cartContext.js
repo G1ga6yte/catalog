@@ -15,12 +15,15 @@ export const CartProvider = ({children}) => {
         const state = Cookies.get('Type')
         if (state){
             setActiveType(state)
+        } else {
+            setActiveType("Inter")
+            Cookies.set('Type', "Inter");
         }
     }, []);
 
-    useEffect(()=>{
-        Cookies.set('Type', activeType, { expires: 365 });
-    }, [activeType, setActiveType])
+    // useEffect(()=>{
+    //     Cookies.set('Type', activeType, { expires: 365 });
+    // }, [activeType, setActiveType])
 
 
 

@@ -2,7 +2,7 @@ import React from 'react';
 import './NavBar.scss';
 import iconImg from "./Troton-logo-footer.svg"
 import iconText from "./Troton.svg"
-import {Link, useNavigate} from "react-router";
+import {Link, useLocation, useNavigate} from "react-router";
 import { IoIosCall } from "react-icons/io";
 import {useCartContext} from "../../cartContext";
 import { FaRegUserCircle } from "react-icons/fa";
@@ -12,13 +12,19 @@ import Cookies from "js-cookie";
 function NavBar() {
     const navigate = useNavigate();
     const {accountInfo, setAccountInfo, setAuthenticated, setLoading, setLoginCont} = useCartContext()
-
+    const location = useLocation();
 
 
     return (
         <div className='NavBarContainer'>
             <div className="cont">
-                <button onClick={()=>navigate(-1)} className="homeLink" >
+                <button onClick={()=>{
+                    if (location.pathname === "/"){
+                        window.scrollTo(0, 0)
+                    } else {
+                        navigate(-1)
+                    }
+                }} className="homeLink" >
                     <img src={iconImg} alt="" className="iconImg" />
                     <img src={iconText} alt="" className="iconText"/>
                 </button>

@@ -51,24 +51,24 @@ function App() {
 
     }, []);
 
-  return (
-    <div className="App">
-        <NavBar/>
+    return (
+        <div className="App">
+            <NavBar/>
 
-        {loginCont && <LoginCont/>}
+            {loginCont && <LoginCont/>}
 
 
-        {loading && <Loading/>}
+            {loading && <Loading/>}
 
-      <Routes>
-        <Route path="/" element={<Main/>} />
-          <Route path="/products" element={<ProductsCont/>}/>
-          <Route path="/product/:id" element={<ProductPage/>}/>
-          <Route path="/favorites" element={<Favorites/>}/>
-          <Route path="/history" element={<History/>}/>
-      </Routes>
-    </div>
-  );
+            <Routes>
+                <Route path="/" element={<Main/>}/>
+                <Route path="/products" element={<ProductsCont/>}/>
+                <Route path="/product/:id" element={<ProductPage/>}/>
+                <Route path="/favorites" element={<Favorites/>}/>
+                <Route path="/history" element={<History/>}/>
+            </Routes>
+        </div>
+    );
 }
 
 export default App;

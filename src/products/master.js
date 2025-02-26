@@ -286,25 +286,25 @@ export const MasterProducts = [
         info: [
             {
                 color: "красный",
-                article: "300003813",
+                article: "30000--3813",
                 volume: "500 мл",
                 peacesInBox: "12"
             },
             {
                 color: "серый",
-                article: "300002321",
+                article: "30000--2321",
                 volume: "500 мл",
                 peacesInBox: "12"
             },
             {
                 color: "чёрный",
-                article: "300005104",
+                article: "30000--5104",
                 volume: "500 мл",
                 peacesInBox: "12"
             },
             {
                 color: "белый",
-                article: "300007235",
+                article: "30000--7235",
                 volume: "500 мл",
                 peacesInBox: "12"
             }
@@ -325,13 +325,13 @@ export const MasterProducts = [
         info: [
             {
                 color: "светло-серый RAL 7040",
-                article: "300007143",
+                article: "30000--7143",
                 volume: "500 мл",
                 peacesInBox: "12"
             },
             {
                 color: "чёрный RAL 7011",
-                article: "300007144",
+                article: "30000--7144",
                 volume: "500 мл",
                 peacesInBox: "12"
             }
@@ -352,13 +352,13 @@ export const MasterProducts = [
         info: [
             {
                 color: "серый",
-                article: "300006985",
+                article: "30000--6985",
                 volume: "500 мл",
                 peacesInBox: "12"
             },
             {
                 color: "чёрный",
-                article: "300002299",
+                article: "30000--2299",
                 volume: "500 мл",
                 peacesInBox: "12"
             }
@@ -379,7 +379,7 @@ export const MasterProducts = [
         info: [
             {
                 color: "чёрный",
-                article: "300002290",
+                article: "30000--2290",
                 volume: "500 мл",
                 peacesInBox: "12"
             }
@@ -413,7 +413,7 @@ export const MasterProducts = [
         info: [
             {
                 var: "стандартный",
-                article: "300002790",
+                article: "30000--2790",
                 volume: "5 л",
                 peacesInBox: "4"
             },
@@ -439,7 +439,7 @@ export const MasterProducts = [
         info: [
             {
                 var: "стандартный",
-                article: "300002253",
+                article: "30000--2253",
                 volume: "1 л",
                 peacesInBox: "6"
             },

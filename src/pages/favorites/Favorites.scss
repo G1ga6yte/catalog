@@ -8,6 +8,7 @@
   min-height: 100vh;
   @include screen($tablet) {
     padding: 80px 10px;
+    max-width: 100vw;
   }
 
   .historyBtn{
@@ -335,6 +336,9 @@
       cursor: pointer;
       margin-top: 20px;
       transition: 0.2s ease-in-out;
+      @include screen($tablet){
+        font-size: 14px;
+      }
 
       &:disabled{
         opacity: 0.3;

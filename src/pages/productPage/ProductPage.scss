@@ -69,6 +69,7 @@
           transition: 0.3s ease-in-out;
           background-color: white;
 
+
           &:hover{
             background-color: #f8cd46;
             color: white;
@@ -154,7 +155,7 @@
             font-family: 'Raleway', sans-serif;
             font-weight: 700;
             @include screen($tablet){
-              font-size: 16px;
+              font-size: 15px;
             }
           }
         }
@@ -174,6 +175,9 @@
             font-family:  sans-serif;
             font-weight: 500;
             line-height: 30px;
+            @include screen($tablet){
+              font-size: 13px;
+            }
           }
           .starBtn{
             border: none;

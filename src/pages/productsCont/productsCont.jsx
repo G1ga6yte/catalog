@@ -39,7 +39,7 @@ function ProductsCont() {
                 if (!isFav) {
                     updatedFavorites.push({
                         productCode: product.productCode,
-                        image: item.image,
+                        image: product.image,
                         article: item.article,
                         type: activeType,
                         peaces: 1,
@@ -63,10 +63,14 @@ function ProductsCont() {
 
 
     useEffect(() => {
-        if (activeType === "Master"){
+        const type = Cookies.get("Type");
+
+
+        if (type === "Master"){
             setActiveProducts(MasterProducts)
-        }
-        if (activeType === "Inter"){
+        } else if (type === "Inter"){
+            setActiveProducts(InterProducts)
+        } else {
             setActiveProducts(InterProducts)
         }
 
@@ -86,6 +90,7 @@ function ProductsCont() {
         setLoading(true)
         navigate(`/product/${product.productCode}`)
         setProduct(product)
+        Cookies.set("Product", product.productCode)
     }
 
     const handleChangeRoute = (type, route) => {

@@ -31,9 +31,6 @@ function Favorites() {
         } else {
             await localStorage.setItem("favorites", JSON.stringify([]));
         }
-
-
-
     }
 
     const getDate = () => {
@@ -109,9 +106,6 @@ function Favorites() {
                             date: getDate(),
                             sum: sum
                         })
-
-
-
                         localStorage.setItem("history", JSON.stringify(historyArr))
 
                         setTimeout(()=>{
@@ -169,11 +163,6 @@ function Favorites() {
     }
 
     useEffect(() => {
-
-
-
-
-
         if (favorites.length) {
             let summa = 0
             favorites.forEach(item => {
