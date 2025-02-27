@@ -1,3 +1,4 @@
+import alt from "./alternative.jpg"
 import img1 from "./Acryl-Filler-4-1.webp"
 import img2 from "./Acryl-Filler-5-1.webp"
 import img3 from "./Anticorrosive-Isolation-Primer-3-1.webp"
@@ -6,7 +7,31 @@ import img5 from "./Acryl-Filler-1K 0.8.webp"
 import img6 from "./Acryl-Filler-1K 0.5.png"
 import img7 from "./Primer-1K-1.webp"
 import img8 from "./Polyester-Spray-Filler-1.webp"
+import img9 from "./Universal.webp"
+import img10 from "./Aluminium.webp"
+import img11 from "./Glass-Fibre-1.webp"
+import img12 from "./Fine.webp"
+import img13 from "./Soft.webp"
+import img14 from "./Light.webp"
+import img15 from "./Plastic.webp"
+import img16 from "./Plastic250g.png"
+import img17 from "./Antisilicone-Additive.webp"
+import img18 from "./Thinner-Fade-Out.webp"
+import img19 from "./Fade-Out-Thinner.webp"
+import img20 from "./Pistolet-do-konserwacji-z-regulacja-cisnienia.webp"
+import img21 from "./UBS-Anti-gravel.webp"
+import img22 from "./UBS-Anti-Gravel-1.webp"
+import img23 from "./2-in1-Anti-gravel-Seam-sealant.webp"
+import img24 from "./Silicone-Remover.webp"
+import img25 from "./Plastic-Primer-1K.webp"
+import img26 from "./Bumper-Paint-1.webp"
+import img27 from "./Repair-Set-1.webp"
+import img28 from "./CRYSTAL-2-1.webp"
+import img29 from "./ZIRCON-2-1.webp"
+import img30 from "./DIAMENT-2-1.webp"
 
 export const InterImages = {
-    img1, img2, img3, img4, img5, img6, img7,img8
+    alt, img1, img2, img3, img4, img5, img6, img7,img8, img9, img10, img11, img12, img13, img14, img15,
+    img16, img17,img18, img19, img20, img21, img22, img23, img24, img25, img26, img27, img28, img29, img30
+
 }

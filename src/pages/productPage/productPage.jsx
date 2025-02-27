@@ -6,6 +6,8 @@ import Cookies from "js-cookie";
 import {FaRegStar, FaStar} from "react-icons/fa";
 import {MasterProducts} from "../../products/master";
 import {InterProducts} from "../../products/inter";
+import {RangersProducts} from "../../products/rangers";
+import {BraytProducts} from "../../products/brayt";
 
 function ProductPage() {
     const {product, setLoading, activeType, setActiveType, setProduct} = useCartContext()
@@ -21,6 +23,10 @@ function ProductPage() {
                 theProduct = MasterProducts.filter((el)=> el.productCode === prodCode)
             } else if (type === "Inter") {
                 theProduct = InterProducts.filter((el)=> el.productCode === prodCode)
+            } else if (type === "Rangers") {
+                theProduct = RangersProducts.filter((el)=> el.productCode === prodCode)
+            }  else if (type === "Brayt") {
+                theProduct = BraytProducts.filter((el)=> el.productCode === prodCode)
             }
             setProduct(theProduct[0])
         } else {
@@ -102,6 +108,7 @@ function ProductPage() {
                                         {product.info[0].var && <th> </th>}
                                         {product.info[0].article && <th>номер артикула</th>}
                                         {product.info[0].volume && <th>объём</th>}
+                                        {product.info[0].weight && <th>вес</th>}
                                         {product.info[0].peacesInBox && <th>штук в коробке</th>}
                                         <th> </th>
                                     </tr>
@@ -116,6 +123,7 @@ function ProductPage() {
                                             {item.var && <td>{item.var}</td>}
                                             {item.article && <td>{item.article}</td>}
                                             {item.volume && <td>{item.volume}</td>}
+                                            {item.weight && <td>{item.weight}</td>}
                                             {item.peacesInBox && <td>{item.peacesInBox}</td>}
                                             <td>
                                                 <button className="starBtn" onClick={() => toggleFavorite(item.article, item.color, item.volume)}>

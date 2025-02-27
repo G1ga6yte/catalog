@@ -8,6 +8,8 @@ import {useNavigate} from "react-router";
 import {InterProducts} from "../../products/inter";
 import {FaRegStar, FaStar} from "react-icons/fa";
 import Cookies from "js-cookie";
+import {RangersProducts} from "../../products/rangers";
+import {BraytProducts} from "../../products/brayt";
 
 function ProductsCont() {
     const {loading, setLoading, activeType, setProduct, setActiveType, authenticated} = useCartContext()
@@ -70,6 +72,10 @@ function ProductsCont() {
             setActiveProducts(MasterProducts)
         } else if (type === "Inter"){
             setActiveProducts(InterProducts)
+        } else if (type === "Rangers"){
+            setActiveProducts(RangersProducts)
+        }  else if (type === "Brayt"){
+            setActiveProducts(BraytProducts)
         } else {
             setActiveProducts(InterProducts)
         }
@@ -122,7 +128,8 @@ function ProductsCont() {
                                     active = false
                                 }
                             })
-                        return (
+                        if (product.active){
+                            return (
                                 <div onClick={()=>handleGoToProduct(product)} key={index} className="productCard">
 
                                     {product.newPrice.length > 0 && <div className="saleMark">
@@ -205,6 +212,7 @@ function ProductsCont() {
                                     }
                                 </div>
                             )
+                        }
                     })}
                 </div>
 
@@ -221,90 +229,93 @@ function ProductsCont() {
                                         active = false
                                     }
                                 })
-                                return (
-                                    <div  onClick={()=>handleGoToProduct(product)} key={index} className="productCard">
+                                if (product.active){
+                                    return (
+                                        <div  onClick={()=>handleGoToProduct(product)} key={index} className="productCard">
 
-                                        {product.newPrice.length > 0 && <div className="saleMark">
-                                            <FaBookmark className="markIcon" />
-                                            <p className="salePrg">{sale}%</p>
-                                        </div>}
+                                            {product.newPrice.length > 0 && <div className="saleMark">
+                                                <FaBookmark className="markIcon" />
+                                                <p className="salePrg">{sale}%</p>
+                                            </div>}
 
-                                        {product.new ?
-                                            <div className="newMark">
-                                                <p>NEW</p>
-                                            </div> : ""
-                                        }
+                                            {product.new ?
+                                                <div className="newMark">
+                                                    <p>NEW</p>
+                                                </div> : ""
+                                            }
 
-                                        <div className="imgBlock">
-                                            <button className="addBtn" onClick={(e)=>{
-                                                e.stopPropagation()
-                                                toggleFavorite(product)
-                                            }}>
-                                                {active ?
-                                                    <FaStar className="favoriteIcon"/>
-                                                    :
-                                                    <FaRegStar className="favoriteIcon"/>
-                                                }
+                                            <div className="imgBlock">
+                                                <button className="addBtn" onClick={(e)=>{
+                                                    e.stopPropagation()
+                                                    toggleFavorite(product)
+                                                }}>
+                                                    {active ?
+                                                        <FaStar className="favoriteIcon"/>
+                                                        :
+                                                        <FaRegStar className="favoriteIcon"/>
+                                                    }
 
-                                            </button>
-                                            <img className="img" src={product.image} alt=""/>
-                                        </div>
-
-                                        <div className="textBlock marginB12">
-                                            <div className="nameCont">
-                                                <p className="name">{product.name}</p>
-                                                <p className="prg">{product.description}</p>
-
-                                                {authenticated ?
-                                                    <div className="mobilePriceCont priceCont">
-                                                        {product.newPrice.length > 0 ?
-                                                            <p className="newPrice">{product.newPrice}.00 <span>AMD</span></p> :
-                                                            <p className="price">{product.price}.00 <span>AMD</span></p>
-                                                        }
-                                                        {product.newPrice.length > 0 && <p className="oldPrice">{product.price}.00 </p>}
-                                                    </div>
-                                                    :
-                                                    <div className="mobilePriceCont priceCont">
-                                                        {product.sellingPrice.length && <p className="price">{product.sellingPrice}.00 <span>AMD</span></p>}
-                                                    </div>
-                                                }
-
+                                                </button>
+                                                <img className="img" src={product.image} alt=""/>
                                             </div>
 
-                                            {/*<div className="priceCont">*/}
-                                            {/*    {product.newPrice.length > 0 ?*/}
-                                            {/*        <p className="newPrice">{product.newPrice}.00 <span>AMD</span></p> :*/}
-                                            {/*        <p className="price">{product.price}.00 <span>AMD</span></p>*/}
-                                            {/*    }*/}
-                                            {/*    {product.newPrice.length > 0 && <p className="oldPrice">{product.price}.00 </p>}*/}
-                                            {/*</div>*/}
+                                            <div className="textBlock marginB12">
+                                                <div className="nameCont">
+                                                    <p className="name">{product.name}</p>
+                                                    <p className="prg">{product.description}</p>
 
-                                        </div>
+                                                    {authenticated ?
+                                                        <div className="mobilePriceCont priceCont">
+                                                            {product.newPrice.length > 0 ?
+                                                                <p className="newPrice">{product.newPrice}.00 <span>AMD</span></p> :
+                                                                <p className="price">{product.price}.00 <span>AMD</span></p>
+                                                            }
+                                                            {product.newPrice.length > 0 && <p className="oldPrice">{product.price}.00 </p>}
+                                                        </div>
+                                                        :
+                                                        <div className="mobilePriceCont priceCont">
+                                                            {product.sellingPrice.length && <p className="price">{product.sellingPrice}.00 <span>AMD</span></p>}
+                                                        </div>
+                                                    }
 
-                                        {authenticated &&
-                                            <div className="textBlock marginB6">
-                                                <span className="miniHeader">Цена продажи:</span>
-                                                <span className="sellingPrice">{product.sellingPrice}.00 <span>AMD</span></span>
-                                            </div>
-                                        }
-
-                                        {product.colors ?
-                                            <div className="colorsCont">
-                                                <span className="miniHeader">Цветы:</span>
-                                                <div className="colors">
-                                                    {product.colors.map((color, index)=>{
-                                                        return(
-                                                            <div key={index} style={{
-                                                                backgroundColor: color
-                                                            }} className="colorBlock">
-                                                            </div>
-                                                        )
-                                                    })}
                                                 </div>
-                                            </div> : ""
-                                        }
-                                    </div>
-                                )
+
+                                                {/*<div className="priceCont">*/}
+                                                {/*    {product.newPrice.length > 0 ?*/}
+                                                {/*        <p className="newPrice">{product.newPrice}.00 <span>AMD</span></p> :*/}
+                                                {/*        <p className="price">{product.price}.00 <span>AMD</span></p>*/}
+                                                {/*    }*/}
+                                                {/*    {product.newPrice.length > 0 && <p className="oldPrice">{product.price}.00 </p>}*/}
+                                                {/*</div>*/}
+
+                                            </div>
+
+                                            {authenticated &&
+                                                <div className="textBlock marginB6">
+                                                    <span className="miniHeader">Цена продажи:</span>
+                                                    <span className="sellingPrice">{product.sellingPrice}.00 <span>AMD</span></span>
+                                                </div>
+                                            }
+
+                                            {product.colors ?
+                                                <div className="colorsCont">
+                                                    <span className="miniHeader">Цветы:</span>
+                                                    <div className="colors">
+                                                        {product.colors.map((color, index)=>{
+                                                            return(
+                                                                <div key={index} style={{
+                                                                    backgroundColor: color
+                                                                }} className="colorBlock">
+                                                                </div>
+                                                            )
+                                                        })}
+                                                    </div>
+                                                </div> : ""
+                                            }
+                                        </div>
+                                    )
+                                }
+
                             }
                         })}
                     </div>
@@ -320,89 +331,92 @@ function ProductsCont() {
                                         active = false
                                     }
                                 })
-                                return (
-                                    <div  onClick={()=>handleGoToProduct(product)} key={index} className="productCard">
+                                if(product.active){
+                                    return (
+                                        <div  onClick={()=>handleGoToProduct(product)} key={index} className="productCard">
 
-                                        {product.newPrice.length > 0 && <div className="saleMark">
-                                            <FaBookmark className="markIcon" />
-                                            <p className="salePrg">{sale}%</p>
-                                        </div>}
+                                            {product.newPrice.length > 0 && <div className="saleMark">
+                                                <FaBookmark className="markIcon" />
+                                                <p className="salePrg">{sale}%</p>
+                                            </div>}
 
-                                        {product.new ?
-                                            <div className="newMark">
-                                                <p>NEW</p>
-                                            </div> : ""
-                                        }
-                                        <div className="imgBlock">
-                                            <button className="addBtn" onClick={(e)=>{
-                                                e.stopPropagation()
-                                                toggleFavorite(product)
-                                            }}>
-                                                {active ?
-                                                    <FaStar className="favoriteIcon"/>
-                                                    :
-                                                    <FaRegStar className="favoriteIcon"/>
-                                                }
+                                            {product.new ?
+                                                <div className="newMark">
+                                                    <p>NEW</p>
+                                                </div> : ""
+                                            }
+                                            <div className="imgBlock">
+                                                <button className="addBtn" onClick={(e)=>{
+                                                    e.stopPropagation()
+                                                    toggleFavorite(product)
+                                                }}>
+                                                    {active ?
+                                                        <FaStar className="favoriteIcon"/>
+                                                        :
+                                                        <FaRegStar className="favoriteIcon"/>
+                                                    }
 
-                                            </button>
-                                            <img className="img" src={product.image} alt=""/>
-                                        </div>
-
-                                        <div className="textBlock marginB12">
-                                            <div className="nameCont">
-                                                <p className="name">{product.name}</p>
-                                                <p className="prg">{product.description}</p>
-
-                                                {authenticated ?
-                                                    <div className="mobilePriceCont priceCont">
-                                                        {product.newPrice.length > 0 ?
-                                                            <p className="newPrice">{product.newPrice}.00 <span>AMD</span></p> :
-                                                            <p className="price">{product.price}.00 <span>AMD</span></p>
-                                                        }
-                                                        {product.newPrice.length > 0 && <p className="oldPrice">{product.price}.00 </p>}
-                                                    </div>
-                                                    :
-                                                    <div className="mobilePriceCont priceCont">
-                                                        {product.sellingPrice.length && <p className="price">{product.sellingPrice}.00 <span>AMD</span></p>}
-                                                    </div>
-                                                }
-
+                                                </button>
+                                                <img className="img" src={product.image} alt=""/>
                                             </div>
 
-                                            {/*<div className="priceCont">*/}
-                                            {/*    {product.newPrice.length > 0 ?*/}
-                                            {/*        <p className="newPrice">{product.newPrice}.00 <span>AMD</span></p> :*/}
-                                            {/*        <p className="price">{product.price}.00 <span>AMD</span></p>*/}
-                                            {/*    }*/}
-                                            {/*    {product.newPrice.length > 0 && <p className="oldPrice">{product.price}.00 </p>}*/}
-                                            {/*</div>*/}
+                                            <div className="textBlock marginB12">
+                                                <div className="nameCont">
+                                                    <p className="name">{product.name}</p>
+                                                    <p className="prg">{product.description}</p>
 
-                                        </div>
+                                                    {authenticated ?
+                                                        <div className="mobilePriceCont priceCont">
+                                                            {product.newPrice.length > 0 ?
+                                                                <p className="newPrice">{product.newPrice}.00 <span>AMD</span></p> :
+                                                                <p className="price">{product.price}.00 <span>AMD</span></p>
+                                                            }
+                                                            {product.newPrice.length > 0 && <p className="oldPrice">{product.price}.00 </p>}
+                                                        </div>
+                                                        :
+                                                        <div className="mobilePriceCont priceCont">
+                                                            {product.sellingPrice.length && <p className="price">{product.sellingPrice}.00 <span>AMD</span></p>}
+                                                        </div>
+                                                    }
 
-                                        {authenticated &&
-                                            <div className="textBlock marginB6">
-                                                <span className="miniHeader">Цена продажи:</span>
-                                                <span className="sellingPrice">{product.sellingPrice}.00 <span>AMD</span></span>
-                                            </div>
-                                        }
-
-                                        {product.colors ?
-                                            <div className="colorsCont">
-                                                <span className="miniHeader">Цветы:</span>
-                                                <div className="colors">
-                                                    {product.colors.map((color, index)=>{
-                                                        return(
-                                                            <div key={index} style={{
-                                                                backgroundColor: color
-                                                            }} className="colorBlock">
-                                                            </div>
-                                                        )
-                                                    })}
                                                 </div>
-                                            </div> : ""
-                                        }
-                                    </div>
-                                )
+
+                                                {/*<div className="priceCont">*/}
+                                                {/*    {product.newPrice.length > 0 ?*/}
+                                                {/*        <p className="newPrice">{product.newPrice}.00 <span>AMD</span></p> :*/}
+                                                {/*        <p className="price">{product.price}.00 <span>AMD</span></p>*/}
+                                                {/*    }*/}
+                                                {/*    {product.newPrice.length > 0 && <p className="oldPrice">{product.price}.00 </p>}*/}
+                                                {/*</div>*/}
+
+                                            </div>
+
+                                            {authenticated &&
+                                                <div className="textBlock marginB6">
+                                                    <span className="miniHeader">Цена продажи:</span>
+                                                    <span className="sellingPrice">{product.sellingPrice}.00 <span>AMD</span></span>
+                                                </div>
+                                            }
+
+                                            {product.colors ?
+                                                <div className="colorsCont">
+                                                    <span className="miniHeader">Цветы:</span>
+                                                    <div className="colors">
+                                                        {product.colors.map((color, index)=>{
+                                                            return(
+                                                                <div key={index} style={{
+                                                                    backgroundColor: color
+                                                                }} className="colorBlock">
+                                                                </div>
+                                                            )
+                                                        })}
+                                                    </div>
+                                                </div> : ""
+                                            }
+                                        </div>
+                                    )
+                                }
+
                             }
                         })}
                     </div>
