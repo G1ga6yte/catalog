@@ -649,7 +649,7 @@ export const InterProducts = [
         description: "Наполняющая полиэфирная шпатлёвка.", // meknabanutyun
         price: "2600", // himnakan gin
         newPrice: "", // skidki depqum
-        image: InterImages.alt, // nkar
+        image: InterImages.img31, // nkar
         new: false,// norutyun
         sellingPrice: "3000",
         colors: [ "#ffdb66"],
@@ -701,7 +701,7 @@ export const InterProducts = [
         description: "Наполняющая полиэфирная шпатлёвка.", // meknabanutyun
         price: "1500", // himnakan gin
         newPrice: "", // skidki depqum
-        image: InterImages.alt, // nkar
+        image: InterImages.img33, // nkar
         new: false,// norutyun
         sellingPrice: "1800",
         colors: [ "#ffdb66"],
@@ -753,7 +753,7 @@ export const InterProducts = [
         description: "Наполняющая полиэфирная шпатлёвка.", // meknabanutyun
         price: "1200", // himnakan gin
         newPrice: "", // skidki depqum
-        image: InterImages.alt, // nkar
+        image: InterImages.img32, // nkar
         new: false,// norutyun
         sellingPrice: "1500",
         colors: [ "#ffdb66"],
@@ -857,7 +857,7 @@ export const InterProducts = [
         description: "Наполняющая полиэфирная шпатлёвка с алюминием.", // meknabanutyun
         price: "2800", // himnakan gin
         newPrice: "", // skidki depqum
-        image: InterImages.alt, // nkar
+        image: InterImages.img34, // nkar
         new: false,// norutyun
         sellingPrice: "3300",
         colors: [ "#4a6673"],
@@ -909,7 +909,7 @@ export const InterProducts = [
         description: "Наполняющая полиэфирная шпатлёвка с алюминием.", // meknabanutyun
         price: "1900", // himnakan gin
         newPrice: "", // skidki depqum
-        image: InterImages.alt, // nkar
+        image: InterImages.img35, // nkar
         new: false,// norutyun
         sellingPrice: "2200",
         colors: [ "#4a6673"],
@@ -961,7 +961,7 @@ export const InterProducts = [
         description: "Наполняющая полиэфирная шпатлёвка с алюминием.", // meknabanutyun
         price: "1400", // himnakan gin
         newPrice: "", // skidki depqum
-        image: InterImages.alt, // nkar
+        image: InterImages.img36, // nkar
         new: false,// norutyun
         sellingPrice: "1600",
         colors: [ "#4a6673"],
@@ -1065,7 +1065,7 @@ export const InterProducts = [
         description: "Конструкционная полиэфирная шпатлёвка армированная стекловолокном.", // meknabanutyun
         price: "2700", // himnakan gin
         newPrice: "", // skidki depqum
-        image: InterImages.alt, // nkar
+        image: InterImages.img37, // nkar
         new: false,// norutyun
         sellingPrice: "3000",
         colors: [ "#295927"],
@@ -1117,7 +1117,7 @@ export const InterProducts = [
         description: "Конструкционная полиэфирная шпатлёвка армированная стекловолокном.", // meknabanutyun
         price: "1700", // himnakan gin
         newPrice: "", // skidki depqum
-        image: InterImages.alt, // nkar
+        image: InterImages.img38, // nkar
         new: false,// norutyun
         sellingPrice: "2000",
         colors: [ "#295927"],
@@ -1169,7 +1169,7 @@ export const InterProducts = [
         description: "Конструкционная полиэфирная шпатлёвка армированная стекловолокном.", // meknabanutyun
         price: "1300", // himnakan gin
         newPrice: "", // skidki depqum
-        image: InterImages.alt, // nkar
+        image: InterImages.img39, // nkar
         new: false,// norutyun
         sellingPrice: "1500",
         colors: [ "#295927"],
@@ -1221,7 +1221,7 @@ export const InterProducts = [
         description: "Отделочная полиэфирная шпатлёвка.", // meknabanutyun
         price: "2600", // himnakan gin
         newPrice: "", // skidki depqum
-        image: InterImages.alt, // nkar
+        image: InterImages.img40, // nkar
         new: false,// norutyun
         sellingPrice: "3000",
         colors: [ "#dfdfdf"],
@@ -1273,7 +1273,7 @@ export const InterProducts = [
         description: "Отделочная полиэфирная шпатлёвка.", // meknabanutyun
         price: "1200", // himnakan gin
         newPrice: "", // skidki depqum
-        image: InterImages.alt, // nkar
+        image: InterImages.img41, // nkar
         new: false,// norutyun
         sellingPrice: "1500",
         colors: [ "#dfdfdf"],
@@ -1377,7 +1377,7 @@ export const InterProducts = [
         description: "Мягкая наполняющая полиэфирная шпатлёвка.", // meknabanutyun
         price: "2600", // himnakan gin
         newPrice: "", // skidki depqum
-        image: InterImages.alt, // nkar
+        image: InterImages.img42, // nkar
         new: false,// norutyun
         sellingPrice: "3000",
         colors: [ "#FFFDD0"],
@@ -1429,7 +1429,7 @@ export const InterProducts = [
         description: "Мягкая наполняющая полиэфирная шпатлёвка.", // meknabanutyun
         price: "1700", // himnakan gin
         newPrice: "", // skidki depqum
-        image: InterImages.alt, // nkar
+        image: InterImages.img43, // nkar
         new: false,// norutyun
         sellingPrice: "2000",
         colors: [ "#FFFDD0"],
@@ -1901,7 +1901,7 @@ export const InterProducts = [
         description: "Антисиликон", // meknabanutyun
         price: "10000", // himnakan gin
         newPrice: "", // skidki depqum
-        image: InterImages.alt, // nkar
+        image: InterImages.img44, // nkar
         new: false,// norutyun
         sellingPrice: "13000",
         info: [

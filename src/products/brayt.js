@@ -29,7 +29,7 @@ export const BraytProducts = [
         description: "Быстрый воск.", // meknabanutyun
         price: "6000", // himnakan gin
         newPrice: "", // skidki depqum
-        image: BraytImages.alt, // nkar
+        image: BraytImages.img2, // nkar
         new: false,// norutyun
         sellingPrice: "8000",
         info: [

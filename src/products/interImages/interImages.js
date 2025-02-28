@@ -29,9 +29,23 @@ import img27 from "./Repair-Set-1.webp"
 import img28 from "./CRYSTAL-2-1.webp"
 import img29 from "./ZIRCON-2-1.webp"
 import img30 from "./DIAMENT-2-1.webp"
-
+import img31 from "./universal1-min.png"
+import img32 from "./universal250-min.png"
+import img33 from "./universal450-min.png"
+import img34 from "./aluminium1-min.png"
+import img35 from "./aluminium450-min.png"
+import img36 from "./aluminium250-min.png"
+import img37 from "./glass1-min.png"
+import img38 from "./glass450-min.png"
+import img39 from "./glass250-min.png"
+import img40 from "./fine1-min.png"
+import img41 from "./fine250-min.png"
+import img42 from "./soft1-min.png"
+import img43 from "./soft450-min.png"
+import img44 from "./silicone5-min.png"
 export const InterImages = {
     alt, img1, img2, img3, img4, img5, img6, img7,img8, img9, img10, img11, img12, img13, img14, img15,
-    img16, img17,img18, img19, img20, img21, img22, img23, img24, img25, img26, img27, img28, img29, img30
+    img16, img17,img18, img19, img20, img21, img22, img23, img24, img25, img26, img27, img28, img29, img30,
+    img31, img32, img33, img34, img35, img36, img37, img38, img39, img40, img41, img42, img43, img44
 
 }
