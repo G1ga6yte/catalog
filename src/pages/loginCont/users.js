@@ -38,5 +38,29 @@ export const Users = [
         password: "$2b$10$vA7UgcgyNvao.NPFya86jOYEu8drjXXqNNXbtvEeWAKUXOF84i1OO",
         address: "Zeytun",
         tel: "+374 __ ______"
+    },
+    {
+        name: "Gegham (Egh.)",
+        email: "armen.aghababyan.02@mail.ru",
+        username: "gegham",
+        password: "$2b$10$vA7UgcgyNvao.NPFya86jOYEu8drjXXqNNXbtvEeWAKUXOF84i1OO",
+        address: "Egheghnadzor",
+        tel: "+374 __ ______"
+    },
+    {
+        name: "Miro (Hrach)",
+        email: "armen.aghababyan.02@mail.ru",
+        username: "mirohrach",
+        password: "$2b$10$vA7UgcgyNvao.NPFya86jOYEu8drjXXqNNXbtvEeWAKUXOF84i1OO",
+        address: "Shahumyan",
+        tel: "+374 __ ______"
+    },
+    {
+        name: "Armen (Davt.)",
+        email: "armen.aghababyan.02@mail.ru",
+        username: "armenagh",
+        password: "$2b$10$vA7UgcgyNvao.NPFya86jOYEu8drjXXqNNXbtvEeWAKUXOF84i1OO",
+        address: "Davtashen",
+        tel: "+374 91 555542"
     }
 ]
