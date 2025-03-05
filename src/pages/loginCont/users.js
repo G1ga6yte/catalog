@@ -45,7 +45,7 @@ export const Users = [
         username: "gegham",
         password: "$2b$10$vA7UgcgyNvao.NPFya86jOYEu8drjXXqNNXbtvEeWAKUXOF84i1OO",
         address: "Egheghnadzor",
-        tel: "+374 __ ______"
+        tel: "+374 98 444442"
     },
     {
         name: "Miro (Hrach)",
@@ -53,7 +53,7 @@ export const Users = [
         username: "mirohrach",
         password: "$2b$10$vA7UgcgyNvao.NPFya86jOYEu8drjXXqNNXbtvEeWAKUXOF84i1OO",
         address: "Shahumyan",
-        tel: "+374 __ ______"
+        tel: "+374 99 224020"
     },
     {
         name: "Armen (Davt.)",
@@ -62,5 +62,21 @@ export const Users = [
         password: "$2b$10$vA7UgcgyNvao.NPFya86jOYEu8drjXXqNNXbtvEeWAKUXOF84i1OO",
         address: "Davtashen",
         tel: "+374 91 555542"
+    },
+    {
+        name: "Hakob (Arshaluys)",
+        email: "armen.aghababyan.02@mail.ru",
+        username: "hakobarsh",
+        password: "$2b$10$vA7UgcgyNvao.NPFya86jOYEu8drjXXqNNXbtvEeWAKUXOF84i1OO",
+        address: "Arshaluys",
+        tel: "+374 95 305060"
+    },
+    {
+        name: "Aro (Artashat)",
+        email: "armen.aghababyan.02@mail.ru",
+        username: "aroart",
+        password: "$2b$10$vA7UgcgyNvao.NPFya86jOYEu8drjXXqNNXbtvEeWAKUXOF84i1OO",
+        address: "Artashat",
+        tel: "+374 94 080123"
     }
 ]
