@@ -37,7 +37,7 @@ export const Users = [
         username: "gugozeytun",
         password: "$2b$10$vA7UgcgyNvao.NPFya86jOYEu8drjXXqNNXbtvEeWAKUXOF84i1OO",
         address: "Zeytun",
-        tel: "+374 __ ______"
+        tel: "+374 55 111525"
     },
     {
         name: "Gegham (Egh.)",
