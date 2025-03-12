@@ -78,5 +78,21 @@ export const Users = [
         password: "$2b$10$vA7UgcgyNvao.NPFya86jOYEu8drjXXqNNXbtvEeWAKUXOF84i1OO",
         address: "Artashat",
         tel: "+374 94 080123"
+    },
+    {
+        name: "User 2",
+        email: "armen.aghababyan.02@mail.ru",
+        username: "user02",
+        password: "$2b$10$vA7UgcgyNvao.NPFya86jOYEu8drjXXqNNXbtvEeWAKUXOF84i1OO",
+        address: "Address 2",
+        tel: "+374 00 000000"
+    },
+    {
+        name: "User 3",
+        email: "armen.aghababyan.02@mail.ru",
+        username: "user03",
+        password: "$2b$10$vA7UgcgyNvao.NPFya86jOYEu8drjXXqNNXbtvEeWAKUXOF84i1OO",
+        address: "Address 3",
+        tel: "+374 00 000000"
     }
 ]
