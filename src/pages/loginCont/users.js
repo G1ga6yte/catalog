@@ -80,12 +80,12 @@ export const Users = [
         tel: "+374 94 080123"
     },
     {
-        name: "User 2",
+        name: "Vrej Kirovakan",
         email: "armen.aghababyan.02@mail.ru",
-        username: "user02",
+        username: "vrej123",
         password: "$2b$10$vA7UgcgyNvao.NPFya86jOYEu8drjXXqNNXbtvEeWAKUXOF84i1OO",
-        address: "Address 2",
-        tel: "+374 00 000000"
+        address: "Kirovakan",
+        tel: "+374 77 188511"
     },
     {
         name: "User 3",
