@@ -88,11 +88,11 @@ export const Users = [
         tel: "+374 77 188511"
     },
     {
-        name: "User 3",
+        name: "Gago Maskvich Serv.",
         email: "armen.aghababyan.02@mail.ru",
-        username: "user03",
+        username: "gago",
         password: "$2b$10$vA7UgcgyNvao.NPFya86jOYEu8drjXXqNNXbtvEeWAKUXOF84i1OO",
-        address: "Address 3",
-        tel: "+374 00 000000"
+        address: "4rd gyux",
+        tel: "+374 93 208010"
     }
 ]
