@@ -79,7 +79,22 @@ export const Users = [
         address: "Artashat",
         tel: "+374 94 080123"
     },
-
+    {
+        name: "Vrej Kirovakan",
+        email: "armen.aghababyan.02@mail.ru",
+        username: "vrej123",
+        password: "$2b$10$vA7UgcgyNvao.NPFya86jOYEu8drjXXqNNXbtvEeWAKUXOF84i1OO",
+        address: "Kirovakan",
+        tel: "+374 77 188511"
+    },
+    {
+        name: "Gago Maskvich Serv.",
+        email: "armen.aghababyan.02@mail.ru",
+        username: "gago",
+        password: "$2b$10$vA7UgcgyNvao.NPFya86jOYEu8drjXXqNNXbtvEeWAKUXOF84i1OO",
+        address: "4rd gyux",
+        tel: "+374 93 208010"
+    },
     {
         name: "Vlad Abovyan",
         email: "armen.aghababyan.02@mail.ru",
@@ -88,4 +103,5 @@ export const Users = [
         address: "Abovyan",
         tel: "+374 77 979787"
     }
+
 ]
