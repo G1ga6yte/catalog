@@ -102,6 +102,14 @@ export const Users = [
         password: "$2b$10$vA7UgcgyNvao.NPFya86jOYEu8drjXXqNNXbtvEeWAKUXOF84i1OO",
         address: "Abovyan",
         tel: "+374 77 979787"
+    },
+    {
+        name: "Vahan Masiv",
+        email: "armen.aghababyan.02@mail.ru",
+        username: "vahan123",
+        password: "$2b$10$vA7UgcgyNvao.NPFya86jOYEu8drjXXqNNXbtvEeWAKUXOF84i1OO",
+        address: "Masiv",
+        tel: "+374 77 604019"
     }
 
 ]
